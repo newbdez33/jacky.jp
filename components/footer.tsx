@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 function XIcon({ className }: { className?: string }) {
@@ -23,7 +23,7 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">You can check these links if you wish to</p>
           <div className="flex gap-2">
             <Button size="sm" asChild className="w-24 bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700">
-              <Link href="https://x.com/newbdez33" target="_blank" rel="noopener noreferrer">
+              <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
                 <XIcon className="mr-2 h-3.5 w-3.5" />
                 X
               </Link>
@@ -32,6 +32,12 @@ export function Footer() {
               <Link href="https://github.com/newbdez33" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
                 Github
+              </Link>
+            </Button>
+            <Button size="sm" asChild className="w-24 bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700">
+              <Link href="https://www.linkedin.com/in/newbdez33/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="mr-2 h-4 w-4" />
+                Linkedin
               </Link>
             </Button>
           </div>
