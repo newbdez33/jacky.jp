@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/lib/i18n-context";
 
 export function GithubContributions() {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [totalContributions, setTotalContributions] = useState<number | null>(null);
 
@@ -55,7 +57,7 @@ export function GithubContributions() {
         </div>
         {totalContributions !== null && (
           <h2 className="text-xs font-normal text-muted-foreground">
-            Total {totalContributions} contributions in lifetime
+            {t.github.totalContributionsPrefix}{totalContributions}{t.github.totalContributionsSuffix}
           </h2>
         )}
 
