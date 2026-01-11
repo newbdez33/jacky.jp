@@ -24,8 +24,15 @@ export function GithubContributions() {
             blockSize={11}
             blockMargin={3}
             fontSize={12}
+            labels={{
+              legend: {
+                less: "",
+                more: "",
+              },
+            }}
+            renderColorLegend={() => <div style={{ display: "none" }} />}
             style={{
-              color: 'var(--foreground)',
+              color: 'var(--muted-foreground)',
               maxWidth: '100%',
             }}
           />
