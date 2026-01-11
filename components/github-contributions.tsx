@@ -28,7 +28,7 @@ export function GithubContributions() {
 
   return (
     <section className="flex flex-col px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-      <div className="w-full max-w-3xl mx-auto space-y-4">
+      <div className="w-full max-w-3xl mx-auto space-y-0">
         <div className="flex justify-start overflow-hidden">
           <GitHubCalendar  
             username="newbdez33" 
@@ -53,7 +53,7 @@ export function GithubContributions() {
         </div>
         {totalContributions !== null && (
           <h2 className="text-xs font-normal text-muted-foreground">
-            {totalContributions} contributions in lifetime
+            Total {totalContributions} contributions in lifetime
           </h2>
         )}
       </div>
