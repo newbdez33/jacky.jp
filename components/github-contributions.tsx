@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
+import Image from "next/image";
+import Link from "next/link";
 
 export function GithubContributions() {
   const [mounted, setMounted] = useState(false);
@@ -56,6 +58,27 @@ export function GithubContributions() {
             Total {totalContributions} contributions in lifetime
           </h2>
         )}
+
+        <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
+          <Link href="https://www.credly.com/badges/55e18c61-b1b2-4463-b1b1-bd37554be591" target="_blank" rel="noopener noreferrer">
+            <Image 
+              src="/images/sap.png" 
+              alt="AWS Certified Solutions Architect – Professional" 
+              width={100} 
+              height={100} 
+              className="hover:opacity-80 transition-opacity"
+            />
+          </Link>
+          <Link href="https://www.credly.com/badges/772d8b0d-5006-473b-9f31-e8c3a02cbda6" target="_blank" rel="noopener noreferrer">
+            <Image 
+              src="/images/saa.png" 
+              alt="AWS Certified Solutions Architect – Associate" 
+              width={100} 
+              height={100} 
+              className="hover:opacity-80 transition-opacity"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );
