@@ -22,19 +22,19 @@ export function Footer() {
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">You can check these links if you wish to</p>
           <div className="flex gap-2">
-            <Button size="sm" asChild className="w-24 bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
                 <XIcon className="mr-1 h-3.5 w-3.5" />
                 X
               </Link>
             </Button>
-            <Button size="sm" asChild className="w-24 bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://github.com/newbdez33" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-1 h-4 w-4" />
                 Github
               </Link>
             </Button>
-            <Button size="sm" asChild className="w-24 bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://www.linkedin.com/in/newbdez33/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-1 h-4 w-4" />
                 Linkedin
