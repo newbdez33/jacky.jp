@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/lib/i18n-context";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -16,38 +19,58 @@ function XIcon({ className }: { className?: string }) {
 }
 
 export function Footer() {
+  const { t, language, setLanguage } = useLanguage();
+
   return (
     <footer className="py-6 md:py-8 text-sm text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
       <div className="max-w-3xl mx-auto px-4 md:px-0 space-y-6">
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">Reach me from</p>
+          <p className="text-sm text-muted-foreground">{t.footer.reachMe}</p>
           <div className="flex gap-2">
-            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
-                <XIcon className="mr-1 h-3.5 w-3.5" />
-                Twitter
+                <XIcon className="h-3.5 w-3.5" />
+                <span className="sr-only">Twitter</span>
               </Link>
             </Button>
-            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://github.com/newbdez33" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-1 h-4 w-4" />
-                Github
+                <Github className="h-4 w-4" />
+                <span className="sr-only">Github</span>
               </Link>
             </Button>
-            <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
+            <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://www.linkedin.com/in/newbdez33/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="mr-1 h-4 w-4" />
-                Linkedin
+                <Linkedin className="h-4 w-4" />
+                <span className="sr-only">Linkedin</span>
               </Link>
             </Button>
           </div>
         </div>
         
-        <div className="space-y-1">
-          <p>Made with ❤️</p>
-          <p>
-            © {new Date().getFullYear()} Jacky. All rights reserved.
-          </p>
+        <div className="flex justify-between items-end">
+          <div className="space-y-1">
+            <p>{t.footer.madeWith}</p>
+            <p>
+              © {new Date().getFullYear()} {t.footer.rights}
+            </p>
+          </div>
+
+          <div className="flex gap-2 text-sm">
+            <button 
+              onClick={() => setLanguage('en')} 
+              className={`transition-colors ${language === 'en' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              English
+            </button>
+            <span>/</span>
+            <button 
+              onClick={() => setLanguage('ja')} 
+              className={`transition-colors ${language === 'ja' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              日本語
+            </button>
+          </div>
         </div>
       </div>
     </footer>
