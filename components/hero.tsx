@@ -1,4 +1,6 @@
 
+import Image from "next/image";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -13,8 +15,6 @@ export function Hero() {
             I&apos;m a passionate <span className="text-foreground">Full-Stack Developer</span> who also works on <span className="text-foreground">Blockchain</span> and <span className="text-foreground">Quantitative Trading</span> related projects, and on creating innovative solutions that tackle complex user challenges.
           </p>
         </div>
-
-
       </div>
     </section>
   );
