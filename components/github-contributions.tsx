@@ -18,15 +18,16 @@ export function GithubContributions() {
     <section className="flex flex-col justify-center px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="w-full max-w-3xl mx-auto space-y-4">
         <h2 className="text-xl font-bold tracking-tight">Contributions</h2>
-        <div className="flex justify-start -ml-1">
+        <div className="flex justify-start">
           <GitHubCalendar 
             username="newbdez33" 
             colorScheme="dark"
-            blockSize={10}
+            blockSize={11}
             blockMargin={3}
             fontSize={12}
             style={{
               color: 'var(--foreground)',
+              maxWidth: '100%',
             }}
           />
         </div>
