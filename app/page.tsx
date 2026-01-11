@@ -3,7 +3,7 @@ import { GithubContributions } from "@/components/github-contributions";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+    <main className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground flex flex-col justify-center">
       <div className="container mx-auto">
         <Hero />
         <GithubContributions />
