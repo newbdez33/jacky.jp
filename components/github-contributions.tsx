@@ -24,7 +24,9 @@ export function GithubContributions() {
             blockSize={11}
             blockMargin={3}
             fontSize={12}
+            year={"all" as any}
             labels={{
+              totalCount: "{{count}} contributions in lifetime",
               legend: {
                 less: "",
                 more: "",
