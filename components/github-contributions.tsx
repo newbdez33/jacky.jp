@@ -15,9 +15,9 @@ export function GithubContributions() {
   }
 
   return (
-    <section className="flex flex-col justify-center px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+    <section className="flex flex-col px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="w-full max-w-3xl mx-auto space-y-4">
-        <div className="flex justify-start">
+        <div className="flex justify-start overflow-hidden">
           <GitHubCalendar  
             username="newbdez33" 
             colorScheme="dark"

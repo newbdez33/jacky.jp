@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { GithubContributions } from '@/components/github-contributions'
+import '@testing-library/jest-dom'
 
 // Mock react-github-calendar to avoid ESM issues in Jest environment
 jest.mock('react-github-calendar', () => ({
