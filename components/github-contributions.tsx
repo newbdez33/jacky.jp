@@ -15,15 +15,15 @@ export function GithubContributions() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center px-4 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-      <div className="w-full max-w-4xl space-y-2">
-        <h2 className="text-xl font-bold tracking-tight text-center md:text-left md:pl-4">Contributions</h2>
-        <div className="flex justify-center md:justify-start">
+    <section className="flex flex-col justify-center px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+      <div className="w-full max-w-3xl mx-auto space-y-4">
+        <h2 className="text-xl font-bold tracking-tight">Contributions</h2>
+        <div className="flex justify-start -ml-1">
           <GitHubCalendar 
             username="newbdez33" 
             colorScheme="dark"
-            blockSize={12}
-            blockMargin={4}
+            blockSize={10}
+            blockMargin={3}
             fontSize={12}
             style={{
               color: 'var(--foreground)',
