@@ -25,7 +25,7 @@ export function Footer() {
             <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
                 <XIcon className="mr-1 h-3.5 w-3.5" />
-                X
+                Twitter
               </Link>
             </Button>
             <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
