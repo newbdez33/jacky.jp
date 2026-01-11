@@ -8,9 +8,10 @@ This is a personal portfolio website for Jacky, a Full-Stack Developer specializ
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Typography**: [Inter](https://fonts.google.com/specimen/Inter)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Animations**: Custom CSS animations & [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate)
 
