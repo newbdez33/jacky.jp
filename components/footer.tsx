@@ -20,7 +20,7 @@ export function Footer() {
     <footer className="py-6 md:py-8 text-sm text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
       <div className="max-w-3xl mx-auto px-4 md:px-0 space-y-6">
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">You can check these links if you wish to</p>
+          <p className="text-sm text-muted-foreground">Reach me from</p>
           <div className="flex gap-2">
             <Button size="sm" asChild className="w-24 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
