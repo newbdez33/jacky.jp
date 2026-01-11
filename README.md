@@ -20,7 +20,7 @@ This is a personal portfolio website for Jacky, a Full-Stack Developer specializ
 ## Features
 
 - 🌓 **Dark Mode**: Deep dark theme by default.
-- 📊 **GitHub Contributions**: Interactive GitHub contribution graph.
+- 📊 **GitHub Contributions**: Interactive GitHub contribution graph with lifetime stats.
 - ⚡ **Responsive Design**: Optimized for mobile and desktop.
 - 🎨 **Minimalist UI**: Clean typography and spacing.
 - 👋 **Interactive Elements**: Subtle animations (e.g., waving hand).
