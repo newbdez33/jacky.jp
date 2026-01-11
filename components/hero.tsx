@@ -12,7 +12,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg text-muted-foreground md:text-xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-            I&apos;m a passionate <span className="text-foreground">Full-Stack Developer</span> who also works on <span className="text-foreground">Blockchain</span> and <span className="text-foreground">Quantitative Trading</span> related projects, and on creating innovative solutions that tackle complex user challenges.
+            I&apos;m a passionate <span className="text-foreground">Full-Stack Developer</span> based in <span className="text-foreground">Tokyo</span>, currently focusing on <span className="text-foreground">AI</span>, <span className="text-foreground">Blockchain</span>, and <span className="text-foreground">trading bot</span> projects, creating innovative solutions that tackle complex user challenges.
           </p>
         </div>
       </div>
