@@ -37,6 +37,30 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Deployment
+
+This project is configured for **Static Export** (`output: 'export'`), making it easy to deploy to **Cloudflare Pages**, GitHub Pages, or any static hosting service.
+
+### Build
+
+To create the production build:
+
+```bash
+npm run build
+# or
+pnpm run build
+```
+
+This will generate an `out/` directory containing the static files.
+
+### Deploy to Cloudflare Pages
+
+You can deploy using [Wrangler](https://developers.cloudflare.com/workers/wrangler/):
+
+```bash
+npx wrangler pages deploy out
+```
+
 ## Project Structure
 
 - `app/`: Next.js app router pages and layout.
