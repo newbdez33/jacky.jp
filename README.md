@@ -11,13 +11,16 @@ This is a personal portfolio website for Jacky, a Full-Stack Developer specializ
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **GitHub Calendar**: [react-github-calendar](https://github.com/grubersjoe/react-github-calendar)
 - **Typography**: [Inter](https://fonts.google.com/specimen/Inter)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Animations**: Custom CSS animations & [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate)
+- **Testing**: [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
 
 ## Features
 
 - 🌓 **Dark Mode**: Deep dark theme by default.
+- 📊 **GitHub Contributions**: Interactive GitHub contribution graph.
 - ⚡ **Responsive Design**: Optimized for mobile and desktop.
 - 🎨 **Minimalist UI**: Clean typography and spacing.
 - 👋 **Interactive Elements**: Subtle animations (e.g., waving hand).
