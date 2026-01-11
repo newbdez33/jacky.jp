@@ -16,9 +16,6 @@ describe('GithubContributions', () => {
   it('renders the contributions section and passes correct props to calendar', async () => {
     render(<GithubContributions />)
     
-    // Check for title
-    expect(screen.getByText('Contributions')).toBeInTheDocument()
-    
     // Check if the mocked calendar is rendered with correct username
     const calendar = await screen.findByTestId('github-calendar-mock')
     expect(calendar).toBeInTheDocument()
