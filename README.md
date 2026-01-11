@@ -4,7 +4,7 @@ A minimal, dark-themed portfolio website built with Next.js, Tailwind CSS, and S
 
 ## Overview
 
-This is a personal portfolio website for Jacky, a Full-Stack Developer specializing in blockchain and finance. The design focuses on simplicity and clean aesthetics, featuring a dark mode interface.
+This is a personal portfolio website for Jacky, a Full-Stack Developer specializing in blockchain and quantitative trading. The design focuses on simplicity and clean aesthetics, featuring a dark mode interface.
 
 ## Tech Stack
 
