@@ -59,47 +59,42 @@ export function GithubContributions() {
     fetchGithubData();
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <section className="flex flex-col px-4 md:px-0 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="w-full max-w-3xl mx-auto space-y-0">
         <div className="flex justify-start overflow-hidden">
-          {contributions.length > 0 && (
-            <>
-              <ActivityCalendar
-                data={contributions}
-                colorScheme="dark"
-                blockSize={11}
-                blockMargin={3}
-                fontSize={12}
-                theme={{
-                  light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
-                  dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-                }}
-                showColorLegend={false}
-                showTotalCount={false}
-                renderBlock={(block, activity) =>
-                  cloneElement(block, {
-                    'data-tooltip-id': 'github-tooltip',
-                    'data-tooltip-content': `${activity.count} contributions on ${activity.date}`,
-                  })
-                }
-                style={{
-                  color: 'var(--muted-foreground)',
-                  maxWidth: '100%',
-                }}
-              />
-              <Tooltip id="github-tooltip" className="z-50" />
-            </>
-          )}
+          <ActivityCalendar
+            data={contributions}
+            loading={contributions.length === 0}
+            colorScheme="dark"
+            blockSize={11}
+            blockMargin={3}
+            fontSize={12}
+            theme={{
+              light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+              dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+            }}
+            showColorLegend={false}
+            showTotalCount={false}
+            renderBlock={(block, activity) =>
+              cloneElement(block, {
+                'data-tooltip-id': 'github-tooltip',
+                'data-tooltip-content': `${activity.count} contributions on ${activity.date}`,
+              })
+            }
+            style={{
+              color: 'var(--muted-foreground)',
+              maxWidth: '100%',
+            }}
+          />
+          <Tooltip id="github-tooltip" className="z-50" />
         </div>
-        {totalContributions !== null && (
+        {totalContributions !== null ? (
           <h2 className="text-xs font-normal text-muted-foreground">
             {t.github.totalContributionsPrefix}{totalContributions}{t.github.totalContributionsSuffix}
           </h2>
+        ) : (
+          <div className="h-4 w-48 bg-muted animate-pulse rounded mt-1" />
         )}
 
         <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
