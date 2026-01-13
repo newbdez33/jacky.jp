@@ -11,7 +11,7 @@ This is a personal portfolio website for Jacky, a Full-Stack Developer specializ
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **GitHub Calendar**: [react-github-calendar](https://github.com/grubersjoe/react-github-calendar)
+- **GitHub Calendar**: [react-activity-calendar](https://github.com/grubersjoe/react-activity-calendar) + [react-tooltip](https://react-tooltip.com/)
 - **Typography**: [Inter](https://fonts.google.com/specimen/Inter)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Animations**: Custom CSS animations & [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate)
@@ -70,6 +70,18 @@ npx wrangler pages deploy out
 - `app/`: Next.js app router pages and layout.
 - `components/`: Reusable UI components (Hero, etc.).
 - `lib/`: Utility functions.
+
+## Technical Implementation Details
+
+### GitHub Contributions Caching Strategy
+
+To prevent layout flash and improve user experience, the GitHub contributions component implements a caching strategy using `localStorage`:
+
+1.  **Initial Load**: On component mount, it checks `localStorage` for cached data (`github_total_contributions` and `github_contributions_grid`).
+2.  **Instant Rendering**: If cache exists, the component renders immediately with the stored data, preventing layout shifts.
+3.  **Background Update**: In the background, it fetches fresh data from the API.
+4.  **Cache Update**: Once new data is received, it updates both the component state (triggering a re-render if data changed) and the `localStorage` cache for the next visit.
+5.  **Error Handling**: JSON parsing is wrapped in try-catch blocks to ensure robustness against corrupted cache data.
 
 ## Customization
 
