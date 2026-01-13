@@ -17,21 +17,6 @@ export function GithubContributions() {
   useEffect(() => {
     setMounted(true);
 
-    // Try to load from cache first
-    const cachedTotal = localStorage.getItem("github_total_contributions");
-    const cachedGrid = localStorage.getItem("github_contributions_grid");
-
-    if (cachedTotal) {
-      setTotalContributions(parseInt(cachedTotal, 10));
-    }
-    if (cachedGrid) {
-      try {
-        setContributions(JSON.parse(cachedGrid));
-      } catch (e) {
-        console.error("Failed to parse cached contributions", e);
-      }
-    }
-
     // Fetch fresh data
     const fetchGithubData = async () => {
       try {
@@ -41,7 +26,6 @@ export function GithubContributions() {
         if (totalData.total) {
           const total = Object.values(totalData.total).reduce((acc: any, curr: any) => acc + curr, 0) as number;
           setTotalContributions(total);
-          localStorage.setItem("github_total_contributions", total.toString());
         }
 
         // Fetch grid data (last year)
@@ -49,7 +33,6 @@ export function GithubContributions() {
         const gridData = await gridRes.json();
         if (gridData.contributions) {
           setContributions(gridData.contributions);
-          localStorage.setItem("github_contributions_grid", JSON.stringify(gridData.contributions));
         }
       } catch (error) {
         console.error("Failed to fetch GitHub contributions:", error);

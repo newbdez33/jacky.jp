@@ -71,18 +71,6 @@ npx wrangler pages deploy out
 - `components/`: Reusable UI components (Hero, etc.).
 - `lib/`: Utility functions.
 
-## Technical Implementation Details
-
-### GitHub Contributions Caching Strategy
-
-To prevent layout flash and improve user experience, the GitHub contributions component implements a caching strategy using `localStorage`:
-
-1.  **Initial Load**: On component mount, it checks `localStorage` for cached data (`github_total_contributions` and `github_contributions_grid`).
-2.  **Instant Rendering**: If cache exists, the component renders immediately with the stored data, preventing layout shifts.
-3.  **Background Update**: In the background, it fetches fresh data from the API.
-4.  **Cache Update**: Once new data is received, it updates both the component state (triggering a re-render if data changed) and the `localStorage` cache for the next visit.
-5.  **Error Handling**: JSON parsing is wrapped in try-catch blocks to ensure robustness against corrupted cache data.
-
 ## Customization
 
 You can modify the content in `components/hero.tsx` to update the personal information.
