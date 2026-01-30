@@ -84,7 +84,7 @@ export function GithubContributions() {
           <Link href="https://www.credly.com/earner/earned/badge/98723e00-f7a4-49d1-ad08-4d5e68956e4c" target="_blank" rel="noopener noreferrer">
             <Image
               src="/images/soa.png"
-              alt="AWS Certified SysOps Administrator – Associate"
+              alt="AWS Certified CloudOps Engineer – Associate"
               width={100}
               height={100}
               className="hover:opacity-80 transition-opacity"
