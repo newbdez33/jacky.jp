@@ -81,21 +81,30 @@ export function GithubContributions() {
         )}
 
         <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
+          <Link href="https://www.credly.com/badges/98723e00-f7a4-49d1-ad08-4d5e68956e4c/public_url" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/images/soa.png"
+              alt="AWS Certified CloudOps Engineer – Associate"
+              width={100}
+              height={100}
+              className="hover:opacity-80 transition-opacity"
+            />
+          </Link>
           <Link href="https://www.credly.com/badges/55e18c61-b1b2-4463-b1b1-bd37554be591" target="_blank" rel="noopener noreferrer">
-            <Image 
-              src="/images/sap.png" 
-              alt="AWS Certified Solutions Architect – Professional" 
-              width={100} 
-              height={100} 
+            <Image
+              src="/images/sap.png"
+              alt="AWS Certified Solutions Architect – Professional"
+              width={100}
+              height={100}
               className="hover:opacity-80 transition-opacity"
             />
           </Link>
           <Link href="https://www.credly.com/badges/772d8b0d-5006-473b-9f31-e8c3a02cbda6" target="_blank" rel="noopener noreferrer">
-            <Image 
-              src="/images/saa.png" 
-              alt="AWS Certified Solutions Architect – Associate" 
-              width={100} 
-              height={100} 
+            <Image
+              src="/images/saa.png"
+              alt="AWS Certified Solutions Architect – Associate"
+              width={100}
+              height={100}
               className="hover:opacity-80 transition-opacity"
             />
           </Link>
