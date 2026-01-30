@@ -81,7 +81,7 @@ export function GithubContributions() {
         )}
 
         <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
-          <Link href="https://www.credly.com/badges/88a6405e-0f26-442a-95ed-f9b9db4c857e" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.credly.com/earner/earned/badge/98723e00-f7a4-49d1-ad08-4d5e68956e4c" target="_blank" rel="noopener noreferrer">
             <Image
               src="/images/soa.png"
               alt="AWS Certified SysOps Administrator – Associate"
