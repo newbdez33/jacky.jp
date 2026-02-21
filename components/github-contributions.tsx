@@ -109,6 +109,15 @@ export function GithubContributions() {
             />
           </Link>
         </div>
+        <div className="pt-4 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-300">
+          <Link href="https://github.com/newbdez33/token-matters-summary" target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://newbdez33.github.io/token-matters-summary/badge/token-usage-dark.svg"
+              alt="AI Token Usage"
+              className="hover:opacity-80 transition-opacity"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );
