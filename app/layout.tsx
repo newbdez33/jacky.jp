@@ -27,11 +27,20 @@ export const metadata: Metadata = {
     siteName: "Jacky",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Jacky — Full-stack developer, Tokyo",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Jacky | Portfolio",
     description: defaultDescription,
+    images: ["/og.png"],
   },
 };
 
