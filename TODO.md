@@ -8,7 +8,7 @@
 
 目标：访客 10 秒内知道你是谁、如何联系；无多余板块。
 
-**进度备忘**：文案英/日、SEO（`metadataBase` / `description` / Open Graph / Twitter，**尚未**加 `og:image`）、`<html lang>` 与界面同步、Footer/GitHub 区 a11y 与错误态、Jest 与 build 已通过。仍可做：`public/og.png` + metadata 引用、README 部署核对、§8 真机微调间距。
+**进度备忘**：文案英/日、SEO（含 `public/og.png` 与 Open Graph / Twitter 大图卡）、`<html lang>` 与界面同步、Footer/GitHub 区 a11y 与错误态、Jest 与 build 已通过。仍可做：§8 真机微调间距。
 
 ### 1. 文案（英）
 
