@@ -30,7 +30,7 @@ export function Footer() {
             <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
                 <XIcon className="h-3.5 w-3.5" />
-                <span className="sr-only">Twitter</span>
+                <span className="sr-only">X</span>
               </Link>
             </Button>
             <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
@@ -57,16 +57,20 @@ export function Footer() {
           </div>
 
           <div className="flex gap-2 text-sm">
-            <button 
-              onClick={() => setLanguage('en')} 
-              className={`transition-colors ${language === 'en' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              aria-pressed={language === "en"}
+              className={`transition-colors ${language === "en" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
             >
               English
             </button>
-            <span>/</span>
-            <button 
-              onClick={() => setLanguage('ja')} 
-              className={`transition-colors ${language === 'ja' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            <span aria-hidden>/</span>
+            <button
+              type="button"
+              onClick={() => setLanguage("ja")}
+              aria-pressed={language === "ja"}
+              className={`transition-colors ${language === "ja" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
             >
               日本語
             </button>
