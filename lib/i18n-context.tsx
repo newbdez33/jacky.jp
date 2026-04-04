@@ -29,6 +29,8 @@ type Translations = {
   github: {
     totalContributionsPrefix: string;
     totalContributionsSuffix: string;
+    loadError: string;
+    sectionAriaLabel: string;
   };
 };
 
@@ -47,7 +49,8 @@ const translations: Record<Language, Translations> = {
         blockchain: "Blockchain",
         comma2: ", and ",
         tradingBot: "trading bot",
-        part4: " projects, creating innovative solutions that tackle complex user challenges.",
+        part4:
+          " projects, spanning internal tools and consumer apps. Lately I'm focused on public-sector work—collaborating with teams of 10+ and guiding new products from 0 to 1.",
       },
     },
     footer: {
@@ -58,6 +61,8 @@ const translations: Record<Language, Translations> = {
     github: {
       totalContributionsPrefix: "Total ",
       totalContributionsSuffix: " contributions in lifetime",
+      loadError: "Could not load GitHub contribution data. Try again later.",
+      sectionAriaLabel: "GitHub contributions",
     },
   },
   ja: {
@@ -73,8 +78,9 @@ const translations: Record<Language, Translations> = {
         comma1: "、",
         blockchain: "ブロックチェーン",
         comma2: "、",
-        tradingBot: "トレーディングボット",
-        part4: "のプロジェクトに注力し、複雑なユーザー課題を解決する革新的なソリューションを作成しています。",
+        tradingBot: "トレードボット",
+        part4:
+          "の領域で、実際に使われるプロダクトを作り込むのが好きです。社内ツールから一般向けアプリまで幅広く手がけ、最近は公共系の案件も増えてきました。10名を超えるチームで協力しながら、新規プロジェクトをゼロから立ち上げるところにやりがいを感じています。",
       },
     },
     footer: {
@@ -85,6 +91,8 @@ const translations: Record<Language, Translations> = {
     github: {
       totalContributionsPrefix: "生涯のコントリビューション総数: ",
       totalContributionsSuffix: "",
+      loadError: "GitHub のコントリビューションを読み込めませんでした。しばらくしてから再度お試しください。",
+      sectionAriaLabel: "GitHub のコントリビューション",
     },
   },
 };
@@ -101,17 +109,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("en");
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("language") as Language;
-    if (savedLang && (savedLang === "en" || savedLang === "ja")) {
-      setLanguage(savedLang);
-    } else {
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith("ja")) {
-        setLanguage("ja");
-      } else {
-        setLanguage("en");
+    queueMicrotask(() => {
+      const savedLang = localStorage.getItem("language") as Language;
+      if (savedLang && (savedLang === "en" || savedLang === "ja")) {
+        setLanguage(savedLang);
+        return;
       }
-    }
+      const browserLang = navigator.language.toLowerCase();
+      setLanguage(browserLang.startsWith("ja") ? "ja" : "en");
+    });
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
@@ -119,11 +125,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("language", lang);
   };
 
-  // Prevent hydration mismatch by rendering children only after mount, 
-  // or accept the mismatch for initial render. 
-  // Better approach for SEO is to default to EN on server and update on client,
-  // but for a simple portfolio this is fine.
-  
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
   const value = {
     language,
     setLanguage: handleSetLanguage,
