@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type PrivateAiLang = "ja" | "zh" | "en";
 
@@ -104,6 +104,12 @@ export type PrivateAiI18nData = {
   honH2: string;
   honP1: string;
   honP2: string;
+  consoleH2: string;
+  consoleLead: string;
+  consoleTab1: string;
+  consoleTab2: string;
+  consoleTab3: string;
+  consoleNote: string;
   ctaH2: string;
   ctaP: string;
   ctaBtn: string;
@@ -216,6 +222,12 @@ const i18nData: Record<PrivateAiLang, PrivateAiI18nData> = {
     honH2: "正直にお伝えします。",
     honP1: '<b>クラウドの最上位モデルと同じ応答速度ではありません。</b>本サービスの応答生成速度はプランにより毎秒10〜50トークン程度です。一方、コード解析(読み込み)は毎秒1,000トークン超と高速で、コーディングエージェント用途に最適化しています。契約書には実測性能の検収基準を明記し、数値でお約束します。',
     honP2: '<b>だからこそ、無料PoCで実際に触ってから</b>ご判断ください。「この速度と品質で、データが一切外に出ない」ことの価値を、御社の実務でお確かめいただけます。',
+    consoleH2: '運用も、見える。管理コンソール標準搭載。',
+    consoleLead: '導入後の運用状態・監査ログ・各種設定は、管理者用コンソールでいつでも確認できます(管理セグメントからのみアクセス可)。記録はメタデータのみで、プロンプト本文は保存しません。認証拒否やレート超過もすべて記録され、監査提出用の CSV/JSON にエクスポートできます。',
+    consoleTab1: '運用状態',
+    consoleTab2: '監査ログ',
+    consoleTab3: '設定',
+    consoleNote: '※ 画面はプレビュー(モックデータ)です。実際の画面は契約構成により異なります。',
     ctaH2: "まずは、実機を見てください。",
     ctaP: "デモ機を持ってお伺いします。御社の会議室で、外部に一切接続しないAIがコードを書く様子をご覧ください。NDA締結のうえ、セキュリティチェックシートへの回答にも対応いたします。",
     ctaBtn: "無料PoCを申し込む",
@@ -340,6 +352,12 @@ const i18nData: Record<PrivateAiLang, PrivateAiI18nData> = {
     honH2: "我们坦诚相告。",
     honP1: '<b>响应速度不及云端最顶级模型。</b>本服务的生成速度依 Plan 约为每秒 10~50 token；但代码解析(读入)超过每秒 1,000 token，已为编码 Agent 用途做了优化。合同中明确写入实测性能验收基准，以数字作出承诺。',
     honP2: '<b>正因如此，请先通过免费 PoC 实际体验</b>后再做判断。"以这个速度和质量，数据一个字节都不外流"的价值，请在贵司的实务中亲自确认。',
+    consoleH2: '运维状态，一目了然。管理控制台标配。',
+    consoleLead: '部署后的运行状态、审计日志、各项设置，管理员随时可在控制台确认(仅限管理网段访问)。记录只含元数据，不保存提示词正文；认证拒绝、超限等事件全部留痕，可导出为审计提交用的 CSV/JSON。',
+    consoleTab1: '运行状态',
+    consoleTab2: '审计日志',
+    consoleTab3: '设置',
+    consoleNote: '※ 画面为预览(模拟数据)，实际界面因合约配置而异。',
     ctaH2: "先看实机，再谈其他。",
     ctaP: "我们带演示机上门。在贵司会议室，亲眼见证一台完全不连外网的 AI 写代码。可签署 NDA，并对应安全检查表的填写。",
     ctaBtn: "申请免费 PoC",
@@ -464,6 +482,12 @@ const i18nData: Record<PrivateAiLang, PrivateAiI18nData> = {
     honH2: "A few honest words.",
     honP1: '<b>This is not as fast as the top cloud models.</b> Generation speed is roughly 10–50 tokens/second depending on plan. Code analysis (reading), however, exceeds 1,000 tokens/second — optimized for coding-agent workloads. Your contract specifies measured acceptance criteria, in numbers.',
     honP2: '<b>That is exactly why we ask you to try it first.</b> Judge after a free PoC — and see for yourself what it is worth when this speed and quality comes with not a single byte leaving your network.',
+    consoleH2: 'Operations you can see. Admin console included.',
+    consoleLead: 'After rollout, administrators can check runtime status, audit logs, and settings anytime from the admin console (reachable only from the management segment). Logging is metadata-only — prompt contents are never stored. Auth rejections and rate-limit events are all recorded and exportable as CSV/JSON for audits.',
+    consoleTab1: 'Monitoring',
+    consoleTab2: 'Audit log',
+    consoleTab3: 'Settings',
+    consoleNote: '※ Screens shown are a preview with mock data. Actual screens vary by contract configuration.',
     ctaH2: "Start by seeing the real machine.",
     ctaP: "We bring a demo unit to you. Watch an AI write code in your meeting room with no external connection whatsoever. NDA available; we also respond to security questionnaires.",
     ctaBtn: "Request a free PoC",
@@ -490,7 +514,15 @@ const i18nData: Record<PrivateAiLang, PrivateAiI18nData> = {
   },
 };
 
-export function usePrivateAiI18n() {
+type PrivateAiContextType = {
+  lang: PrivateAiLang;
+  setLang: (lang: PrivateAiLang) => void;
+  t: PrivateAiI18nData;
+};
+
+const PrivateAiContext = createContext<PrivateAiContextType | undefined>(undefined);
+
+export function PrivateAiProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<PrivateAiLang>("ja");
 
   useEffect(() => {
@@ -512,5 +544,19 @@ export function usePrivateAiI18n() {
     localStorage.setItem("private-ai-lang", next);
   };
 
-  return { lang, setLang: changeLang, t: i18nData[lang] };
+  const value = { lang, setLang: changeLang, t: i18nData[lang] };
+
+  return (
+    <PrivateAiContext.Provider value={value}>
+      {children}
+    </PrivateAiContext.Provider>
+  );
+}
+
+export function usePrivateAiI18n() {
+  const context = useContext(PrivateAiContext);
+  if (context === undefined) {
+    throw new Error("usePrivateAiI18n must be used within a PrivateAiProvider");
+  }
+  return context;
 }

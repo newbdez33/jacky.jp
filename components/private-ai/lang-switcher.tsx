@@ -22,10 +22,10 @@ export function LangSwitcher() {
           key={l.code}
           type="button"
           onClick={() => setLang(l.code)}
-          className={`border-0 bg-transparent cursor-pointer font-bold text-[12px] leading-none px-3 py-[7px] rounded-sm tracking-[0.04em] transition-all ${
+          className={`border-0 cursor-pointer font-bold text-[12px] leading-none px-3 py-[7px] rounded-sm tracking-[0.04em] transition-all ${
             lang === l.code
-              ? "bg-[#d8a851] text-[#231a06]"
-              : "text-[#9fae9f] hover:text-[#e9efe8]"
+              ? "bg-[#2e7d46] dark:bg-[#63bd85] text-white dark:text-[#0f1a14]"
+              : "bg-transparent text-[#9fae9f] hover:text-[#e9efe8]"
           }`}
         >
           {l.label}
