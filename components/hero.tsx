@@ -5,20 +5,16 @@ import { useLanguage } from "@/lib/i18n-context";
 
 export function Hero() {
   const { t, language } = useLanguage();
-  // CJK glyphs fill the full em box, so Japanese reads larger than Latin at the
-  // same size. Step it down one notch and loosen the line-height to match.
+  // CJK glyphs fill the full em box, so the Japanese intro reads larger than
+  // the English one at the same size. Step it down one notch and loosen the
+  // line-height to match.
   const isJa = language === "ja";
 
   return (
     <section className="flex flex-col px-4 md:px-0 pb-8">
       <div className="max-w-3xl mx-auto space-y-8">
         <div className="space-y-4">
-          <h1
-            className={cn(
-              "font-bold tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-500",
-              isJa ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"
-            )}
-          >
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
             {t.hero.greeting} <span className="inline-block hover:animate-wave origin-bottom-right">👋</span>
           </h1>
           
