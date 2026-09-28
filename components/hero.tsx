@@ -20,7 +20,7 @@ export function Hero() {
           
           <p
             className={cn(
-              "text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100",
+              "text-muted-foreground transition-none animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100",
               isJa ? "text-base leading-relaxed md:text-lg" : "text-lg md:text-xl"
             )}
           >
