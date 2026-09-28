@@ -1,19 +1,33 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n-context";
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // CJK glyphs fill the full em box, so Japanese reads larger than Latin at the
+  // same size. Step it down one notch and loosen the line-height to match.
+  const isJa = language === "ja";
 
   return (
     <section className="flex flex-col px-4 md:px-0 pb-8">
       <div className="max-w-3xl mx-auto space-y-8">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h1
+            className={cn(
+              "font-bold tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-500",
+              isJa ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"
+            )}
+          >
             {t.hero.greeting} <span className="inline-block hover:animate-wave origin-bottom-right">👋</span>
           </h1>
           
-          <p className="text-lg text-muted-foreground md:text-xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          <p
+            className={cn(
+              "text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100",
+              isJa ? "text-base leading-relaxed md:text-lg" : "text-lg md:text-xl"
+            )}
+          >
             {t.hero.description.part1}
             <span className="text-foreground">{t.hero.description.role}</span>
             {t.hero.description.part2}
