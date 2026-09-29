@@ -119,3 +119,14 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
 }
+
+/* GitHub calendar: blocks fade in week by week once the data arrives */
+@keyframes gh-block-in {
+  from { opacity: 0; }
+}
+.gh-block-in {
+  animation: gh-block-in 260ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gh-block-in { animation: none; }
+}

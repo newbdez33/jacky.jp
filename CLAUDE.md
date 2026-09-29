@@ -29,11 +29,13 @@ app/                          # Next.js App Router
 components/                   # Feature and UI components
 ├── hero.tsx                 # Hero section with bio and greeting
 ├── github-contributions.tsx # GitHub activity grid and stats
+├── github-contributions-skeleton.tsx # Loading skeleton for the grid (wave + green cells)
 ├── footer.tsx               # Footer with social links and language switcher
 ├── ui/                      # Shadcn UI primitives
 │   └── button.tsx           # Button component with CVA variants
 └── __tests__/               # Component tests
-    └── github-contributions.test.tsx
+    ├── github-contributions.test.tsx
+    └── github-contributions-skeleton.test.tsx
 
 lib/                          # Utilities and context
 ├── i18n-context.tsx         # Internationalization (EN/JA)
