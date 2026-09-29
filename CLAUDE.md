@@ -30,10 +30,12 @@ components/                   # Feature and UI components
 ├── hero.tsx                 # Hero section with bio and greeting
 ├── github-contributions.tsx # GitHub activity grid and stats
 ├── github-contributions-skeleton.tsx # Loading skeleton for the grid (wave + green cells)
+├── aws-badge.tsx            # AWS certification badge as a draggable 3D hexagonal coin
 ├── footer.tsx               # Footer with social links and language switcher
 ├── ui/                      # Shadcn UI primitives
 │   └── button.tsx           # Button component with CVA variants
 └── __tests__/               # Component tests
+    ├── aws-badge.test.tsx
     ├── github-contributions.test.tsx
     └── github-contributions-skeleton.test.tsx
 
@@ -137,6 +139,7 @@ describe("ComponentName", () => {
 | `app/globals.css` | Theme variables (OKLCH), animations (wave), dark mode |
 | `components/hero.tsx` | Bio, greeting with wave animation, i18n text |
 | `components/github-contributions.tsx` | GitHub stats, ActivityCalendar, AWS badges |
+| `components/aws-badge.tsx` | 3D coin badge: drag/flick to spin, hover tilt, reveal spin, reduced-motion fallback |
 | `lib/i18n-context.tsx` | Language context, translations, useLanguage hook |
 | `lib/utils.ts` | `cn()` function (clsx + tailwind-merge) |
 | `next.config.ts` | Static export config, image optimization disabled |
