@@ -182,10 +182,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e3e6ea;
+  /* Brushed brass */
   background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px),
-    radial-gradient(140% 140% at 30% 12%, #8d949d 0%, #585e67 50%, #383d44 100%);
+    repeating-linear-gradient(90deg, rgba(255, 244, 210, 0.07) 0 1px, transparent 1px 3px),
+    radial-gradient(140% 140% at 30% 12%, #f2d994 0%, #c9a24d 42%, #7d5c1c 100%);
 }
 /* Inner plate, leaving a lighter bevelled rim around it. */
 .aws-badge-back::before {
@@ -193,8 +193,9 @@
   position: absolute;
   inset: 6px;
   clip-path: var(--aws-hex);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.18));
+  background: linear-gradient(165deg, rgba(255, 246, 220, 0.16), rgba(60, 40, 5, 0.3));
 }
+/* "aws" engraved into the brass: a dark groove, its top lip in shadow, its bottom lip catching light. */
 .aws-badge-mark {
   position: relative;
   font-family: var(--font-inter), system-ui, sans-serif;
@@ -202,7 +203,8 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.45);
+  color: rgba(58, 38, 6, 0.9);
+  text-shadow: 0 -1px 0 rgba(40, 24, 0, 0.55), 0 1px 0 rgba(255, 240, 190, 0.55);
 }
 .aws-badge-wall {
   position: absolute;
@@ -227,7 +229,7 @@
 }
 /* The back face is mirrored, so its band leans the other way to read the same on screen. */
 .aws-badge-back .aws-badge-shine {
-  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 255, 255, 0.45) 50%, transparent 60%);
+  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 246, 215, 0.5) 50%, transparent 60%);
   background-position-x: var(--shine-back);
 }
 @media (prefers-reduced-motion: reduce) {
