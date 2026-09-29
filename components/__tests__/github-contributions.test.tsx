@@ -126,6 +126,23 @@ describe("GithubContributions", () => {
     blocks.forEach((b) => expect(b).toHaveClass("gh-block-in"));
   });
 
+  it("renders the three AWS certifications as spinnable coins", () => {
+    global.fetch = jest.fn().mockImplementation(() => new Promise(() => {}));
+
+    const { container } = renderWithProvider(<GithubContributions />);
+
+    const coins = container.querySelectorAll(".aws-badge");
+    expect(coins).toHaveLength(3);
+    expect(Array.from(coins).map((c) => c.getAttribute("href"))).toEqual([
+      "https://www.credly.com/badges/98723e00-f7a4-49d1-ad08-4d5e68956e4c/public_url",
+      "https://www.credly.com/badges/55e18c61-b1b2-4463-b1b1-bd37554be591",
+      "https://www.credly.com/badges/772d8b0d-5006-473b-9f31-e8c3a02cbda6",
+    ]);
+    expect(screen.getByRole("img", { name: /CloudOps Engineer/ })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Solutions Architect – Professional/ })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Solutions Architect – Associate/ })).toBeInTheDocument();
+  });
+
   it("shows error message when API fails", async () => {
     const consoleError = jest.spyOn(console, "error").mockImplementation(() => {
       /* expected in error path */
