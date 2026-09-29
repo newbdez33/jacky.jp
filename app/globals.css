@@ -182,10 +182,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #b4b9c2;
+  /* Polished metal in the badge's own rim colour: a hard gloss band over a lit-from-top-left body */
   background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 3px),
-    radial-gradient(140% 140% at 30% 12%, #4b525b 0%, #22262c 50%, #0e1013 100%);
+    linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.32) 44%, rgba(255, 255, 255, 0.06) 52%, transparent 62%),
+    radial-gradient(
+      140% 140% at 28% 10%,
+      color-mix(in oklab, var(--rim) 55%, white) 0%,
+      var(--rim) 42%,
+      color-mix(in oklab, var(--rim) 48%, black) 100%
+    );
 }
 /* Inner plate, leaving a lighter bevelled rim around it. */
 .aws-badge-back::before {
@@ -193,12 +198,18 @@
   position: absolute;
   inset: 6px;
   clip-path: var(--aws-hex);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.35));
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.2), rgba(0, 10, 40, 0.32));
 }
+/* "aws" engraved into the metal: a dark groove, its top lip in shadow, its bottom lip catching light. */
 .aws-badge-mark {
   position: relative;
   font-family: var(--font-inter), system-ui, sans-serif;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.12)) drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.6));
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  color: color-mix(in oklab, var(--rim) 38%, black);
+  text-shadow: 0 -1px 0 rgba(0, 8, 30, 0.6), 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .aws-badge-wall {
   position: absolute;
@@ -223,7 +234,7 @@
 }
 /* The back face is mirrored, so its band leans the other way to read the same on screen. */
 .aws-badge-back .aws-badge-shine {
-  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 255, 255, 0.45) 50%, transparent 60%);
+  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
   background-position-x: var(--shine-back);
 }
 @media (prefers-reduced-motion: reduce) {
