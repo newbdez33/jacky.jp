@@ -1,20 +1,34 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import "@testing-library/jest-dom";
 import { GithubContributions } from "@/components/github-contributions";
 import { LanguageProvider } from "@/lib/i18n-context";
 
+type MockActivity = { date: string; count: number; level: number };
+
 jest.mock("react-activity-calendar", () => ({
   ActivityCalendar: function MockActivityCalendar(props: {
     loading?: boolean;
-    data?: unknown[];
+    data?: MockActivity[];
+    renderBlock?: (
+      block: React.ReactElement,
+      activity: MockActivity
+    ) => React.ReactElement;
   }) {
     return (
       <div
         data-testid="activity-calendar"
         data-loading={String(!!props.loading)}
       >
-        blocks:{props.data?.length ?? 0}
+        <svg>
+          {props.data?.map((activity) => {
+            const block = (
+              <rect key={activity.date} data-testid="block" data-date={activity.date} />
+            );
+            return props.renderBlock ? props.renderBlock(block, activity) : block;
+          })}
+        </svg>
       </div>
     );
   },
@@ -28,6 +42,21 @@ function renderWithProvider(ui: React.ReactElement) {
   return render(<LanguageProvider>{ui}</LanguageProvider>);
 }
 
+function mockSuccessfulFetch(contributions: MockActivity[]) {
+  global.fetch = jest.fn().mockImplementation((url: string) => {
+    if (url.includes("y=all")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ total: { "2024": 100, "2025": 50 } }),
+      });
+    }
+    return Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve({ contributions }),
+    });
+  });
+}
+
 describe("GithubContributions", () => {
   const originalFetch = global.fetch;
 
@@ -36,31 +65,65 @@ describe("GithubContributions", () => {
     jest.resetAllMocks();
   });
 
-  it("loads calendar data and shows total when API succeeds", async () => {
-    global.fetch = jest.fn().mockImplementation((url: string) => {
-      if (url.includes("y=all")) {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ total: { "2024": 100, "2025": 50 } }),
-        });
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            contributions: [{ date: "2025-01-01", count: 1, level: 1 }],
-          }),
-      });
-    });
+  it("shows the skeleton and a number placeholder while the API is pending", async () => {
+    global.fetch = jest.fn().mockImplementation(() => new Promise(() => {}));
 
     renderWithProvider(<GithubContributions />);
 
-    expect(await screen.findByTestId("activity-calendar")).toBeInTheDocument();
+    const skeleton = screen.getByTestId("contributions-skeleton");
+    expect(skeleton.closest("[aria-busy]")).toHaveAttribute("aria-busy", "true");
+    expect(screen.queryByTestId("activity-calendar")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+    expect(screen.getByText(/contributions in lifetime/)).toContainElement(
+      document.querySelector(".gh-skeleton-pill")
+    );
+    await waitFor(() =>
+      expect(skeleton).toHaveAttribute("data-wave", expect.stringMatching(/^(diag|horiz|sine)$/))
+    );
+  });
+
+  it("server markup is a static skeleton so hydration matches", () => {
+    const html = renderToString(
+      <LanguageProvider>
+        <GithubContributions />
+      </LanguageProvider>
+    );
+    expect(html).toContain('data-testid="contributions-skeleton"');
+    expect(html).not.toContain("data-wave");
+    expect(html).not.toContain("animation-delay");
+  });
+
+  it("loads calendar data and shows total when API succeeds", async () => {
+    mockSuccessfulFetch([{ date: "2025-01-01", count: 1, level: 1 }]);
+
+    renderWithProvider(<GithubContributions />);
+
+    const calendar = await screen.findByTestId("activity-calendar");
+    expect(calendar).toHaveAttribute("data-loading", "false");
     await waitFor(() => {
-      expect(
-        screen.getByText(/Total 150 contributions in lifetime/)
-      ).toBeInTheDocument();
+      expect(screen.getByRole("heading")).toHaveTextContent(
+        /Total 150 contributions in lifetime/
+      );
     });
+    expect(calendar.closest("[aria-busy]")).toHaveAttribute("aria-busy", "false");
+    await waitFor(() =>
+      expect(screen.queryByTestId("contributions-skeleton")).not.toBeInTheDocument()
+    );
+  });
+
+  it("reveals blocks week by week once data arrives", async () => {
+    // 2025-01-05 is a Sunday, so the three dates fall in weeks 0, 1 and 2
+    mockSuccessfulFetch([
+      { date: "2025-01-05", count: 1, level: 1 },
+      { date: "2025-01-12", count: 2, level: 2 },
+      { date: "2025-01-20", count: 3, level: 3 },
+    ]);
+
+    renderWithProvider(<GithubContributions />);
+
+    const blocks = await screen.findAllByTestId("block");
+    expect(blocks.map((b) => b.style.animationDelay)).toEqual(["0ms", "8ms", "16ms"]);
+    blocks.forEach((b) => expect(b).toHaveClass("gh-block-in"));
   });
 
   it("shows error message when API fails", async () => {
@@ -77,6 +140,7 @@ describe("GithubContributions", () => {
       );
     });
     expect(screen.queryByTestId("activity-calendar")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("contributions-skeleton")).not.toBeInTheDocument();
     consoleError.mockRestore();
   });
 });

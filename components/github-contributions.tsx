@@ -1,20 +1,70 @@
 "use client";
 
-import { useEffect, useState, cloneElement } from "react";
+import { useEffect, useMemo, useState, cloneElement } from "react";
 import { ActivityCalendar, type Activity } from "react-activity-calendar";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n-context";
+import { cn } from "@/lib/utils";
+import {
+  CALENDAR,
+  CALENDAR_THEME,
+  ContributionsSkeleton,
+  NumberPill,
+  WAVES,
+  type Wave,
+} from "@/components/github-contributions-skeleton";
 
 type FetchState = "loading" | "ready" | "error";
+type SkeletonMotion = { wave: Wave; seed: number };
+
+const REVEAL_STEP_MS = 8; // per-week stagger when the real calendar fades in
+const SKELETON_FADE_MS = 200;
+
+// Weeks start on Sunday, matching the calendar's default grouping.
+function weekDelays(contributions: Activity[]): Map<string, number> {
+  const delays = new Map<string, number>();
+  if (contributions.length === 0) return delays;
+  const dayMs = 86_400_000;
+  const toUtc = (date: string) => Date.parse(`${date}T00:00:00Z`);
+  const first = toUtc(contributions[0].date);
+  const offset = new Date(first).getUTCDay();
+  for (const { date } of contributions) {
+    const days = Math.round((toUtc(date) - first) / dayMs);
+    delays.set(date, Math.floor((days + offset) / 7) * REVEAL_STEP_MS);
+  }
+  return delays;
+}
 
 export function GithubContributions() {
   const { t } = useLanguage();
   const [fetchState, setFetchState] = useState<FetchState>("loading");
   const [totalContributions, setTotalContributions] = useState<number | null>(null);
   const [contributions, setContributions] = useState<Activity[]>([]);
+  const [motion, setMotion] = useState<SkeletonMotion | null>(null);
+  const [skeletonGone, setSkeletonGone] = useState(false);
+
+  // The wave is picked on the client only, so the static HTML and the first
+  // client render are identical (a still grid) and hydration matches.
+  useEffect(() => {
+    queueMicrotask(() => {
+      setMotion({
+        wave: WAVES[Math.floor(Math.random() * WAVES.length)],
+        seed: Math.floor(Math.random() * 0x7fffffff),
+      });
+    });
+  }, []);
+
+  // Keep the skeleton mounted while it fades out underneath the real calendar.
+  useEffect(() => {
+    if (fetchState !== "ready") return;
+    const timer = setTimeout(() => setSkeletonGone(true), SKELETON_FADE_MS);
+    return () => clearTimeout(timer);
+  }, [fetchState]);
+
+  const revealDelays = useMemo(() => weekDelays(contributions), [contributions]);
 
   useEffect(() => {
     const fetchGithubData = async () => {
@@ -67,41 +117,57 @@ export function GithubContributions() {
               {t.github.loadError}
             </p>
           ) : (
-            <>
-              <ActivityCalendar
-                data={contributions}
-                loading={fetchState === "loading"}
-                colorScheme="dark"
-                blockSize={11}
-                blockMargin={3}
-                fontSize={12}
-                theme={{
-                  light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
-                  dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-                }}
-                showColorLegend={false}
-                showTotalCount={false}
-                renderBlock={(block, activity) =>
-                  cloneElement(block, {
-                    'data-tooltip-id': 'github-tooltip',
-                    'data-tooltip-content': `${activity.count} contributions on ${activity.date}`,
-                  })
-                }
-                style={{
-                  color: 'var(--muted-foreground)',
-                  maxWidth: '100%',
-                }}
-              />
-              <Tooltip id="github-tooltip" className="z-50" />
-            </>
+            <div className="grid max-w-full">
+              {!skeletonGone && (
+                <div
+                  className={cn(
+                    "min-w-0 [grid-area:1/1]",
+                    fetchState === "ready" && "animate-out fade-out fill-mode-forwards duration-200"
+                  )}
+                >
+                  <ContributionsSkeleton wave={motion?.wave ?? null} seed={motion?.seed ?? 0} />
+                </div>
+              )}
+              {fetchState === "ready" && (
+                <div className="min-w-0 [grid-area:1/1] animate-in fade-in duration-300">
+                  <ActivityCalendar
+                    data={contributions}
+                    colorScheme="dark"
+                    blockSize={CALENDAR.blockSize}
+                    blockMargin={CALENDAR.blockMargin}
+                    fontSize={CALENDAR.fontSize}
+                    theme={CALENDAR_THEME}
+                    showColorLegend={false}
+                    showTotalCount={false}
+                    renderBlock={(block, activity) =>
+                      cloneElement(block, {
+                        'data-tooltip-id': 'github-tooltip',
+                        'data-tooltip-content': `${activity.count} contributions on ${activity.date}`,
+                        className: "gh-block-in",
+                        style: { animationDelay: `${revealDelays.get(activity.date) ?? 0}ms` },
+                      })
+                    }
+                    style={{
+                      color: 'var(--muted-foreground)',
+                      maxWidth: '100%',
+                    }}
+                  />
+                  <Tooltip id="github-tooltip" className="z-50" />
+                </div>
+              )}
+            </div>
           )}
         </div>
         {fetchState === "error" ? null : totalContributions !== null ? (
-          <h2 className="text-xs font-normal text-muted-foreground">
+          <h2 className="text-xs font-normal text-muted-foreground animate-in fade-in duration-300">
             {t.github.totalContributionsPrefix}{totalContributions}{t.github.totalContributionsSuffix}
           </h2>
         ) : fetchState === "loading" ? (
-          <div className="h-4 w-48 bg-muted animate-pulse rounded mt-1" aria-hidden />
+          <p className="text-xs text-muted-foreground" aria-hidden>
+            {t.github.totalContributionsPrefix}
+            <NumberPill wave={motion?.wave ?? null} />
+            {t.github.totalContributionsSuffix}
+          </p>
         ) : null}
 
         <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
