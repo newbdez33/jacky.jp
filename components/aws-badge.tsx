@@ -225,34 +225,7 @@ export function AwsBadge({ src, alt, href, rim, spinDelay = 0 }: AwsBadgeProps) 
           />
         ))}
         <div className="aws-badge-face aws-badge-back" aria-hidden>
-          <svg viewBox="0 0 64 40" width="52" height="33" className="aws-badge-mark">
-            <text
-              x="32"
-              y="23"
-              textAnchor="middle"
-              fontSize="24"
-              fontWeight="700"
-              letterSpacing="-1"
-              fill="currentColor"
-            >
-              aws
-            </text>
-            <path
-              d="M9 29c8 7 38 7 46-1"
-              fill="none"
-              stroke="#f90"
-              strokeWidth="2.6"
-              strokeLinecap="round"
-            />
-            <path
-              d="M50 24l5 4-4 4"
-              fill="none"
-              stroke="#f90"
-              strokeWidth="2.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span className="aws-badge-mark">aws</span>
           <span className="aws-badge-shine" />
         </div>
       </div>

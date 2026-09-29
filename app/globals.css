@@ -182,10 +182,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #b4b9c2;
+  color: #e3e6ea;
   background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 3px),
-    radial-gradient(140% 140% at 30% 12%, #4b525b 0%, #22262c 50%, #0e1013 100%);
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px),
+    radial-gradient(140% 140% at 30% 12%, #8d949d 0%, #585e67 50%, #383d44 100%);
 }
 /* Inner plate, leaving a lighter bevelled rim around it. */
 .aws-badge-back::before {
@@ -193,12 +193,16 @@
   position: absolute;
   inset: 6px;
   clip-path: var(--aws-hex);
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.35));
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.18));
 }
 .aws-badge-mark {
   position: relative;
   font-family: var(--font-inter), system-ui, sans-serif;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.12)) drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.6));
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.45);
 }
 .aws-badge-wall {
   position: absolute;
