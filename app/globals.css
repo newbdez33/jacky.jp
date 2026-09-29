@@ -182,10 +182,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Brushed brass */
+  /* Polished metal in the badge's own rim colour: a hard gloss band over a lit-from-top-left body */
   background:
-    repeating-linear-gradient(90deg, rgba(255, 244, 210, 0.07) 0 1px, transparent 1px 3px),
-    radial-gradient(140% 140% at 30% 12%, #f2d994 0%, #c9a24d 42%, #7d5c1c 100%);
+    linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.32) 44%, rgba(255, 255, 255, 0.06) 52%, transparent 62%),
+    radial-gradient(
+      140% 140% at 28% 10%,
+      color-mix(in oklab, var(--rim) 55%, white) 0%,
+      var(--rim) 42%,
+      color-mix(in oklab, var(--rim) 48%, black) 100%
+    );
 }
 /* Inner plate, leaving a lighter bevelled rim around it. */
 .aws-badge-back::before {
@@ -193,9 +198,9 @@
   position: absolute;
   inset: 6px;
   clip-path: var(--aws-hex);
-  background: linear-gradient(165deg, rgba(255, 246, 220, 0.16), rgba(60, 40, 5, 0.3));
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.2), rgba(0, 10, 40, 0.32));
 }
-/* "aws" engraved into the brass: a dark groove, its top lip in shadow, its bottom lip catching light. */
+/* "aws" engraved into the metal: a dark groove, its top lip in shadow, its bottom lip catching light. */
 .aws-badge-mark {
   position: relative;
   font-family: var(--font-inter), system-ui, sans-serif;
@@ -203,8 +208,8 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: rgba(58, 38, 6, 0.9);
-  text-shadow: 0 -1px 0 rgba(40, 24, 0, 0.55), 0 1px 0 rgba(255, 240, 190, 0.55);
+  color: color-mix(in oklab, var(--rim) 38%, black);
+  text-shadow: 0 -1px 0 rgba(0, 8, 30, 0.6), 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .aws-badge-wall {
   position: absolute;
@@ -229,7 +234,7 @@
 }
 /* The back face is mirrored, so its band leans the other way to read the same on screen. */
 .aws-badge-back .aws-badge-shine {
-  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 246, 215, 0.5) 50%, transparent 60%);
+  background-image: linear-gradient(255deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%);
   background-position-x: var(--shine-back);
 }
 @media (prefers-reduced-motion: reduce) {
