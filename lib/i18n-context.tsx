@@ -26,6 +26,10 @@ type Translations = {
     madeWith: string;
     rights: string;
   };
+  tokenUsage: {
+    title: string;
+    viewUsage: string;
+  };
   github: {
     totalContributionsPrefix: string;
     totalContributionsSuffix: string;
@@ -58,6 +62,10 @@ const translations: Record<Language, Translations> = {
       madeWith: "Made with ❤️",
       rights: "Jacky. All rights reserved.",
     },
+    tokenUsage: {
+      title: "AI Token Usage",
+      viewUsage: "View usage",
+    },
     github: {
       totalContributionsPrefix: "Total ",
       totalContributionsSuffix: " contributions in lifetime",
@@ -87,6 +95,10 @@ const translations: Record<Language, Translations> = {
       reachMe: "お問い合わせ",
       madeWith: "Made with ❤️",
       rights: "Jacky. All rights reserved.",
+    },
+    tokenUsage: {
+      title: "AIトークン使用量",
+      viewUsage: "使用量を見る",
     },
     github: {
       totalContributionsPrefix: "生涯のコントリビューション総数: ",
