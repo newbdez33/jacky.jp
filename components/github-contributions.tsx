@@ -27,6 +27,12 @@ const REVEAL_STAGGER_MS = 150;
 
 const AWS_BADGES = [
   {
+    src: "/images/mla.png",
+    alt: "AWS Certified Machine Learning Engineer – Associate",
+    href: "https://www.credly.com/badges/52060e45-d086-445e-a85f-447d798c6c2c",
+    rim: "#3c92f8",
+  },
+  {
     src: "/images/soa.png",
     alt: "AWS Certified CloudOps Engineer – Associate",
     href: "https://www.credly.com/badges/98723e00-f7a4-49d1-ad08-4d5e68956e4c/public_url",
@@ -193,7 +199,7 @@ export function GithubContributions() {
           </p>
         ) : null}
 
-        <div className="flex gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
+        <div className="flex flex-wrap gap-3 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-200">
           {AWS_BADGES.map((badge, i) => (
             <AwsBadge key={badge.src} {...badge} spinDelay={REVEAL_DELAY_MS + i * REVEAL_STAGGER_MS} />
           ))}
