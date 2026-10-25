@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState, cloneElement } from "react";
 import { ActivityCalendar, type Activity } from "react-activity-calendar";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import Link from "next/link";
 import { AwsBadge } from "@/components/aws-badge";
+import { TokenUsageBadge } from "@/components/token-usage-badge";
 import { useLanguage } from "@/lib/i18n-context";
 import { cn } from "@/lib/utils";
 import {
@@ -205,13 +205,7 @@ export function GithubContributions() {
           ))}
         </div>
         <div className="pt-4 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-300">
-          <Link href="https://tokens.jacky.jp/" target="_blank" rel="noopener noreferrer">
-            <img
-              src="https://token-beats-api.jacky-1a4.workers.dev/v1/badge/jacky@gcu.co.jp.svg"
-              alt="AI Token Usage"
-              className="hover:opacity-80 transition-opacity"
-            />
-          </Link>
+          <TokenUsageBadge />
         </div>
       </div>
     </section>
