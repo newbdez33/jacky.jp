@@ -9,8 +9,9 @@ const inter = Inter({
 });
 
 const siteUrl = new URL("https://jacky.jp");
+const defaultTitle = "Jacky | Developer in Tokyo";
 const defaultDescription =
-  "Full-stack developer in Tokyo shipping AI products—internal tools, consumer apps, and public-sector work—with blockchain and trading-bot experience.";
+  "Full-stack developer in Tokyo focused on machine learning and AI, with experience in internal tools, consumer apps, blockchain, trading bots, and public-sector work.";
 
 export const viewport: Viewport = {
   themeColor: "#1a1a1a",
@@ -18,10 +19,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Jacky | Portfolio",
+  title: defaultTitle,
   description: defaultDescription,
   openGraph: {
-    title: "Jacky | Portfolio",
+    title: defaultTitle,
     description: defaultDescription,
     url: siteUrl,
     siteName: "Jacky",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jacky | Portfolio",
+    title: defaultTitle,
     description: defaultDescription,
     images: ["/og.png"],
   },
