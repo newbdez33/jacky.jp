@@ -1,0 +1,4 @@
+name = "jacky-jp"
+pages_build_output_dir = "out"
+compatibility_date = "2026-11-05"
+compatibility_flags = ["global_fetch_strictly_public"]

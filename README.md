@@ -49,6 +49,8 @@ The badge loads from `/api/token-usage` on the site domain. A Cloudflare Pages F
 
 `public/_routes.json` limits Function requests to the badge endpoint. All other pages and assets use static hosting. This does not require a scheduled build or GitHub Actions workflow.
 
+`wrangler.toml` pins the runtime settings for local, preview, and production use. The `global_fetch_strictly_public` flag makes requests to the upstream Worker use its public URL. A failed image response includes an `X-Badge-Error` header for diagnosis.
+
 To test the image route with the static site locally:
 
 ```bash

@@ -5,6 +5,13 @@ type RequestContext = {
   waitUntil: (promise: Promise<unknown>) => void;
 };
 
+function unavailable(reason: string): Response {
+  return new Response(null, {
+    status: 503,
+    headers: { "Cache-Control": "no-store", "X-Badge-Error": reason },
+  });
+}
+
 export async function onRequest(context: RequestContext): Promise<Response> {
   const { request } = context;
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -22,13 +29,12 @@ export async function onRequest(context: RequestContext): Promise<Response> {
         headers: { Accept: "image/svg+xml" },
         signal: AbortSignal.timeout(5_000),
       });
-      if (!upstream.ok || !upstream.headers.get("Content-Type")?.startsWith("image/svg+xml")) {
-        throw new Error(`Invalid badge response: ${upstream.status}`);
-      }
+      if (!upstream.ok) return unavailable(`upstream-${upstream.status}`);
+      if (!upstream.headers.get("Content-Type")?.startsWith("image/svg+xml")) return unavailable("invalid-content-type");
 
       const svg = await upstream.text();
       if (svg.length > 65_536 || !/^\s*(?:<\?xml[^>]*>\s*)?<svg[\s>]/.test(svg) || !/<\/svg>\s*$/.test(svg)) {
-        throw new Error("Invalid badge SVG");
+        return unavailable("invalid-svg");
       }
 
       response = new Response(svg, {
@@ -44,7 +50,7 @@ export async function onRequest(context: RequestContext): Promise<Response> {
       }));
     } catch (error) {
       console.error("Failed to fetch token usage image", error);
-      return new Response(null, { status: 503, headers: { "Cache-Control": "no-store" } });
+      return unavailable("upstream-unavailable");
     }
   }
 

@@ -71,17 +71,18 @@ describe("token usage image route", () => {
   });
 
   it.each([
-    [503, "image/svg+xml", svg],
-    [200, "text/html", "<html>Service unavailable</html>"],
-    [200, "image/svg+xml", "<html>Service unavailable</html>"],
-    [200, "image/svg+xml", "<svg>incomplete"],
-  ])("does not cache an invalid upstream response (%i, %s)", async (status, contentType, body) => {
+    [503, "image/svg+xml", svg, "upstream-503"],
+    [200, "text/html", "<html>Service unavailable</html>", "invalid-content-type"],
+    [200, "image/svg+xml", "<html>Service unavailable</html>", "invalid-svg"],
+    [200, "image/svg+xml", "<svg>incomplete", "invalid-svg"],
+  ])("does not cache an invalid upstream response (%i, %s)", async (status, contentType, body, reason) => {
     jest.mocked(fetch).mockResolvedValue(new Response(body, { status, headers: { "Content-Type": contentType } }));
 
     const response = await requestBadge();
 
     expect(response.status).toBe(503);
     expect(response.headers.get("Cache-Control")).toBe("no-store");
+    expect(response.headers.get("X-Badge-Error")).toBe(reason);
     expect(cachePut).not.toHaveBeenCalled();
   });
 
