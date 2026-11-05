@@ -21,6 +21,7 @@ describe("TokenUsageBadge", () => {
 
     const fallback = await screen.findByText("View usage");
     const image = screen.getByAltText("AI Token Usage");
+    expect((image as HTMLImageElement).src).toBe(new URL("/api/token-usage", window.location.origin).href);
     expect(fallback).toBeVisible();
     expect(image).not.toBeVisible();
 

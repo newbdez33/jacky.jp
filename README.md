@@ -43,6 +43,21 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Production deploys run on **Cloudflare** from the connected Git repository (no manual upload steps in this README).
 
+### Token usage image
+
+The badge loads from `/api/token-usage` on the site domain. A Cloudflare Pages Function fetches the public SVG from Token Beats and caches valid responses for five minutes. The browser does not need access to `workers.dev`. Failed requests are not cached, and the existing link card remains available when the image cannot load.
+
+`public/_routes.json` limits Function requests to the badge endpoint. All other pages and assets use static hosting. This does not require a scheduled build or GitHub Actions workflow.
+
+To test the image route with the static site locally:
+
+```bash
+pnpm build
+pnpm dlx wrangler@4.158.0 pages dev out --port 8788
+```
+
+`pnpm dev` runs Next.js only and does not run the Pages Function.
+
 ## Project Structure
 
 - `app/`: Next.js app router pages and layout.

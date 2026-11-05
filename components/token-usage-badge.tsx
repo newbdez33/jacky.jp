@@ -26,7 +26,7 @@ export function TokenUsageBadge() {
         </div>
       )}
       <Image
-        src="https://token-beats-api.jacky-1a4.workers.dev/v1/badge/jacky@gcu.co.jp.svg"
+        src="/api/token-usage"
         alt={t.tokenUsage.title}
         width={294}
         height={62}

@@ -64,10 +64,12 @@ pnpm lint         # Run ESLint checks
 
 ### Static Export
 The site uses `output: 'export'` in `next.config.ts` for static generation. This means:
-- No server-side APIs or dynamic routes
+- No Next.js server-side APIs or dynamic routes
 - All pages are pre-rendered at build time
 - Image optimization is disabled (`images: { unoptimized: true }`)
-- Deployable to any static host (Cloudflare Pages, GitHub Pages, Vercel)
+- A Cloudflare Pages Function in `functions/api/token-usage.ts` serves the token badge from the site domain and caches valid SVG responses for five minutes
+- `public/_routes.json` limits Function execution to `/api/token-usage`; all other routes remain static
+- Use `pnpm build` followed by `pnpm dlx wrangler@4.158.0 pages dev out` to test the badge endpoint locally; Next.js dev does not run Pages Functions
 
 ### Styling Approach
 - **Tailwind CSS utilities** for all styling (no custom CSS classes except globals)
