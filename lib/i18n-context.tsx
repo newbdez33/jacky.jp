@@ -26,6 +26,12 @@ type Translations = {
     madeWith: string;
     rights: string;
   };
+  swarm: {
+    play: string;
+    stop: string;
+    loading: string;
+    error: string;
+  };
   tokenUsage: {
     title: string;
     viewUsage: string;
@@ -62,6 +68,12 @@ const translations: Record<Language, Translations> = {
       madeWith: "Made with ❤️",
       rights: "Jacky. All rights reserved.",
     },
+    swarm: {
+      play: "Watch agents build",
+      stop: "Stop animation",
+      loading: "Loading animation…",
+      error: "Could not load the animation. Try again.",
+    },
     tokenUsage: {
       title: "AI Token Usage",
       viewUsage: "View usage",
@@ -95,6 +107,12 @@ const translations: Record<Language, Translations> = {
       reachMe: "お問い合わせ",
       madeWith: "Made with ❤️",
       rights: "Jacky. All rights reserved.",
+    },
+    swarm: {
+      play: "エージェントの制作を見る",
+      stop: "アニメーションを停止",
+      loading: "アニメーションを読み込み中…",
+      error: "アニメーションを読み込めませんでした。もう一度お試しください。",
     },
     tokenUsage: {
       title: "AIトークン使用量",

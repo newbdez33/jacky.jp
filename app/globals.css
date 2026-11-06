@@ -101,6 +101,31 @@
   }
 }
 
+/* The animation owns a visual copy; the original content stays accessible. */
+.swarm-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  overflow: hidden;
+}
+.swarm-preview [data-swarm-target],
+.swarm-preview [data-swarm-target] * {
+  animation: none !important;
+  transition: none !important;
+}
+[data-swarm-hidden] {
+  opacity: 0 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .swarm-preview-control, .swarm-preview { display: none !important; }
+  [data-swarm-hidden] { opacity: 1 !important; }
+}
+@media print {
+  .swarm-preview-control, .swarm-preview { display: none !important; }
+  [data-swarm-hidden] { opacity: 1 !important; }
+}
+
 .dark {
   --background: oklch(0.10 0 0);
   --foreground: oklch(0.97 0 0);

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n-context";
+import { SwarmPreview } from "@/components/swarm-preview";
 
 export function Hero() {
   const { t, language } = useLanguage();
@@ -14,11 +15,12 @@ export function Hero() {
     <section className="flex flex-col px-4 md:px-0 pb-8">
       <div className="max-w-3xl mx-auto space-y-8">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h1 data-swarm-target className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
             {t.hero.greeting} <span className="inline-block hover:animate-wave origin-bottom-right">👋</span>
           </h1>
           
           <p
+            data-swarm-target
             className={cn(
               "text-muted-foreground transition-none animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100",
               isJa ? "text-base leading-relaxed md:text-lg" : "text-lg md:text-xl"
@@ -36,6 +38,7 @@ export function Hero() {
             <span className="text-foreground">{t.hero.description.tradingBot}</span>
             {t.hero.description.part4}
           </p>
+          <SwarmPreview />
         </div>
       </div>
     </section>

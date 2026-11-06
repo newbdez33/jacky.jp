@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer className="py-6 md:py-8 text-sm text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
       <div className="max-w-3xl mx-auto px-4 md:px-0 space-y-6">
-        <div className="space-y-4">
+        <div className="space-y-4" data-swarm-target>
           <p className="text-sm text-muted-foreground">{t.footer.reachMe}</p>
           <div className="flex gap-2">
             <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
@@ -49,7 +49,7 @@ export function Footer() {
         </div>
         
         <div className="flex justify-between items-end">
-          <div className="space-y-1">
+          <div className="space-y-1" data-swarm-target>
             <p>{t.footer.madeWith}</p>
             <p>
               © {new Date().getFullYear()} {t.footer.rights}
