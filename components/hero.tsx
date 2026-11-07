@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n-context";
 
@@ -14,9 +15,19 @@ export function Hero() {
     <section className="flex flex-col px-4 md:px-0 pb-8">
       <div className="max-w-3xl mx-auto space-y-8">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {t.hero.greeting} <span className="inline-block hover:animate-wave origin-bottom-right">👋</span>
-          </h1>
+          <div className="flex items-center gap-3 sm:gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <Image
+              src="/images/jacky-avatar.webp"
+              alt="Jacky"
+              width={64}
+              height={64}
+              loading="eager"
+              className="size-14 shrink-0 object-contain sm:size-16"
+            />
+            <h1 className="min-w-0 text-balance text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              {t.hero.greeting}
+            </h1>
+          </div>
           
           <p
             className={cn(
