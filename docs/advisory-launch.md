@@ -11,7 +11,7 @@ All pages support `lang=en`, `lang=ja`, and `lang=zh`. Support pages have `noind
 
 ## Confirmed terms
 
-- Contact before payment is available through WeChat `newbdez33` or Telegram `@newbdez33` (`https://t.me/newbdez33`). Confirm the fit and scope, then agree on a payment method. Book calls after payment.
+- Contact before payment is available through WeChat or LINE (ID: `newbdez33` on both), or Telegram `@newbdez33` (`https://t.me/newbdez33`). Confirm the fit and scope, then agree on a payment method. Book calls after payment.
 - Casual: JPY 12,999 monthly or JPY 129,999 yearly, tax included. Renewal arrangements are agreed before payment.
 - 90 minutes of active async support per monthly cycle, including yearly plans. No carryover.
 - Replies usually arrive within one Japanese business day. Additional work requires agreement.
@@ -33,10 +33,10 @@ For the first five customers, verify the payment using the agreed method and con
 ## Inputs before launch
 
 - Payment instructions and renewal terms for the agreed method, plus private appointment arrangements.
-- Receipt matching procedure for WeChat and Telegram contacts.
+- Receipt matching procedure for WeChat, LINE, and Telegram contacts.
 - Final cancellation, refund, rescheduling, and privacy terms.
 - Seller information for the commercial disclosure. The [Consumer Affairs Agency guide](https://www.no-trouble.caa.go.jp/what/mailorder/) lists price, payment and service timing, cancellation conditions, and seller identification among the disclosures for mail-order services. The current rules page is not a completed legal disclosure.
 
 ## Validation
 
-Run `pnpm exec jest --runInBand` and `pnpm build`. Check both contact dialogs, service rules navigation, all three languages, direct route access, and mobile layouts. Clipboard denial or an insecure preview origin must select the WeChat ID for manual copying instead of reporting success.
+Run `pnpm exec jest --runInBand` and `pnpm build`. Check both contact dialogs, service rules navigation, all three languages, direct route access, and mobile layouts. Clipboard denial or an insecure preview origin must select the requested WeChat or LINE ID for manual copying instead of reporting success.

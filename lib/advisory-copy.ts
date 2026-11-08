@@ -85,8 +85,8 @@ export const advisoryCopy = {
       ["初回ヒアリング", "初回の決済後、技術背景と事業を理解するための50分の面談を調整します。中国語または英語で実施します。"],
     ],
     contactBadge: "まずはご連絡を", contactTitle: "Casual サブスクリプション", contactSessionTitle: "個別技術面談",
-    contactSubscription: "お支払い前に、WeChatまたはTelegramでプロジェクトとご希望をお知らせください。対応範囲がご希望に合うか確認したうえで、支払方法を相談して決めます。無料の初回ヒアリングは、初回のお支払い後に予約できます。",
-    contactSession: "WeChatまたはTelegramで相談したいテーマをお知らせください。対応内容がご希望に合うか確認したうえで支払方法を決め、お支払い後に日時を予約します。面談は中国語または英語です。",
+    contactSubscription: "お支払い前に、WeChat、LINE、Telegramのいずれかでプロジェクトとご希望をお知らせください。対応範囲がご希望に合うか確認したうえで、支払方法を相談して決めます。無料の初回ヒアリングは、初回のお支払い後に予約できます。",
+    contactSession: "WeChat、LINE、Telegramのいずれかで相談したいテーマをお知らせください。対応内容がご希望に合うか確認したうえで支払方法を決め、お支払い後に日時を予約します。面談は中国語または英語です。",
     contactBack: "プランに戻る", contactClose: "連絡先を閉じる", priceTax: "税込",
   },
   zh: {
@@ -130,8 +130,8 @@ export const advisoryCopy = {
       ["首次背景沟通", "首次订阅付款后安排 50 分钟沟通，了解技术背景、业务目标和实际约束，为后续支持建立共同背景。面谈支持中文和英文。"],
     ],
     contactBadge: "先聊聊你的需求", contactTitle: "Casual 订阅", contactSessionTitle: "专项技术面谈",
-    contactSubscription: "先通过微信或 Telegram 简单介绍项目与需要的支持，确认需求和服务范围合适后，再商定付款方式。首次赠送的背景面谈在订阅付款后预约。",
-    contactSession: "先通过微信或 Telegram 沟通面谈主题，确认合适后商定付款方式，付款后再预约时间。面谈支持中文或英文。",
+    contactSubscription: "先通过微信、LINE 或 Telegram 简单介绍项目与需要的支持，确认需求和服务范围合适后，再商定付款方式。首次赠送的背景面谈在订阅付款后预约。",
+    contactSession: "先通过微信、LINE 或 Telegram 沟通面谈主题，确认合适后商定付款方式，付款后再预约时间。面谈支持中文或英文。",
     contactBack: "返回服务方案", contactClose: "关闭联系方式", priceTax: "含税",
   },
 } as const;

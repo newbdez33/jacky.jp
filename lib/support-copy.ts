@@ -3,10 +3,17 @@ export const supportCopy = {
     home: "Back to Jacky", termsLink: "Service rules",
     preview: "SERVICE PREVIEW",
     contact: {
-      wechatId: "WeChat ID", copyWechat: "Copy WeChat ID",
       purposeNote: "Please mention “technical advice and support” when you contact me.",
-      copied: "WeChat ID copied. Search for it in WeChat to add me.",
-      manual: "The WeChat ID is selected. Copy it, then search for it in WeChat.",
+      wechat: {
+        idLabel: "WeChat ID", copyLabel: "Copy WeChat ID",
+        copied: "WeChat ID copied. Search for it in WeChat to add me.",
+        manual: "The WeChat ID is selected. Copy it, then search for it in WeChat.",
+      },
+      line: {
+        idLabel: "LINE ID", copyLabel: "Copy LINE ID",
+        copied: "LINE ID copied. Search for it in LINE to add me.",
+        manual: "The LINE ID is selected. Copy it, then search for it in LINE.",
+      },
     },
     terms: {
       title: "Clear terms. Better conversations.",
@@ -34,10 +41,17 @@ export const supportCopy = {
     home: "Jackyのトップへ", termsLink: "サービスのルール",
     preview: "サービスプレビュー",
     contact: {
-      wechatId: "WeChat ID", copyWechat: "WeChat IDをコピー",
       purposeNote: "ご連絡の際は「技術相談・サポート」とお伝えください。",
-      copied: "WeChat IDをコピーしました。WeChatで検索して追加してください。",
-      manual: "WeChat IDを選択しました。コピーして、WeChatで検索してください。",
+      wechat: {
+        idLabel: "WeChat ID", copyLabel: "WeChat IDをコピー",
+        copied: "WeChat IDをコピーしました。WeChatで検索して追加してください。",
+        manual: "WeChat IDを選択しました。コピーして、WeChatで検索してください。",
+      },
+      line: {
+        idLabel: "LINE ID", copyLabel: "LINE IDをコピー",
+        copied: "LINE IDをコピーしました。LINEで検索して追加してください。",
+        manual: "LINE IDを選択しました。コピーして、LINEで検索してください。",
+      },
     },
     terms: {
       title: "安心して相談するために。",
@@ -65,10 +79,17 @@ export const supportCopy = {
     home: "返回 Jacky 主页", termsLink: "服务规则",
     preview: "服务预览",
     contact: {
-      wechatId: "微信号", copyWechat: "复制微信号",
       purposeNote: "联系时请注明来意：技术咨询与支持。",
-      copied: "微信号已复制，在微信中搜索即可添加。",
-      manual: "已选中微信号，请手动复制后在微信中搜索。",
+      wechat: {
+        idLabel: "微信号", copyLabel: "复制微信号",
+        copied: "微信号已复制，在微信中搜索即可添加。",
+        manual: "已选中微信号，请手动复制后在微信中搜索。",
+      },
+      line: {
+        idLabel: "LINE ID", copyLabel: "复制 LINE ID",
+        copied: "LINE ID 已复制，在 LINE 中搜索即可添加。",
+        manual: "已选中 LINE ID，请手动复制后在 LINE 中搜索。",
+      },
     },
     terms: {
       title: "把规则讲清楚，再开始。",

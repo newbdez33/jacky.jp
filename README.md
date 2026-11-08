@@ -4,7 +4,7 @@ A minimal, dark-themed portfolio and technical advisory website built with Next.
 
 ## Overview
 
-This website presents Jacky's development and infrastructure experience, technical advisory plans, and contact options in English, Japanese, and Chinese. Visitors can discuss their needs through WeChat or Telegram, then agree on a payment method. The site does not process payments or bookings.
+This website presents Jacky's development and infrastructure experience, technical advisory plans, and contact options in English, Japanese, and Chinese. Visitors can discuss their needs through WeChat, LINE, or Telegram, then agree on a payment method. The site does not process payments or bookings.
 
 ## Tech Stack
 

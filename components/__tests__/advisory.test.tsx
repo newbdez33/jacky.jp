@@ -63,6 +63,7 @@ describe("Technical advisory page", () => {
     expect(within(contact).getByText(/Contact me before paying/)).toBeVisible();
     expect(within(contact).getByText("¥12,999 / month · tax included")).toBeVisible();
     expect(within(contact).getByRole("textbox", { name: "WeChat ID" })).toHaveValue("newbdez33");
+    expect(within(contact).getByRole("textbox", { name: "LINE ID" })).toHaveValue("newbdez33");
     expect(within(contact).getByRole("link", { name: "Telegram @newbdez33" })).toHaveAttribute("href", "https://t.me/newbdez33");
     fireEvent.click(within(contact).getByRole("button", { name: "Back to plans" }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
