@@ -12,15 +12,27 @@ All pages support `lang=en`, `lang=ja`, and `lang=zh`. Support pages have `noind
 ## Confirmed terms
 
 - Contact before payment is available through WeChat or LINE (ID: `newbdez33` on both), or Telegram `@newbdez33` (`https://t.me/newbdez33`). Confirm the fit and scope, then agree on a payment method. Book calls after payment.
-- Casual: JPY 12,999 monthly or JPY 129,999 yearly, tax included. Renewal arrangements are agreed before payment.
+- Casual uses the fixed, tax-inclusive prices below. Renewal arrangements are agreed before payment.
 - 90 minutes of active async support per monthly cycle, including yearly plans. No carryover.
 - Replies usually arrive within one Japanese business day. Additional work requires agreement.
 - One 50-minute introduction after the first subscription payment, once per person, outside the monthly allowance.
-- Separate consultations: JPY 10,000 for 50 minutes, tax included. Pay before booking.
+- Separate consultations last 50 minutes and use the fixed, tax-inclusive prices below. Pay before booking.
 - Chat in Chinese, Japanese, or English. Calls in Chinese or English.
-- Annual early termination: refund each full monthly cycle not yet started at 1/12 of the actual annual payment.
+- Annual early termination: refund each full monthly cycle not yet started at 1/12 of the actual annual payment, in the original payment currency.
 
-The exact start date, monthly refund conditions, session changes, booking expiry, and refund processing time remain drafts. Confirm the service end date and whole-yen rounding for annual refunds before live checkout.
+The exact start date, monthly refund conditions, session changes, booking expiry, and refund processing time remain drafts. Confirm the service end date and currency-specific rounding for annual refunds before live checkout.
+
+## Localized prices
+
+| Language | Payment currency | Casual monthly | Casual yearly | 50-minute consultation |
+| --- | --- | ---: | ---: | ---: |
+| English | USD | 85 | 850 | 65 |
+| Japanese | JPY | 12,999 | 129,999 | 10,000 |
+| Chinese | CNY | 550 | 5,500 | 450 |
+
+All prices include tax and are charged in the displayed currency. These are fixed prices, not live exchange estimates. The same price configuration supplies the homepage, contact dialogs, service rules, annual savings, and approximate monthly cost of a yearly plan. Language changes keep the selected billing period.
+
+The USD and CNY prices were set from the [ECB reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html) published on 6 November 2026: EUR 1 = USD 1.1165 = JPY 176.77 = CNY 7.4485. The JPY prices convert to approximately USD 82.10 / 821.09 / 63.16 and CNY 547.73 / 5,477.73 / 421.37 for monthly / yearly / consultation. Prices were rounded upward to simple amounts; the USD and CNY yearly plans cost ten monthly payments. Runtime exchange-rate requests are not required.
 
 ## Payment and booking setup
 

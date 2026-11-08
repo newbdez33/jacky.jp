@@ -5,16 +5,18 @@ import { ArrowUpRight, Check, ChevronDown, Code2, Layers3, MessageSquare, X } fr
 import { Button } from "@/components/ui/button";
 import { ContactMethods } from "@/components/contact-methods";
 import { advisoryCopy } from "@/lib/advisory-copy";
+import { getAdvisoryPricing } from "@/lib/advisory-pricing";
 import { useLanguage } from "@/lib/i18n-context";
 import { cn } from "@/lib/utils";
 
 export function AdvisoryPlans() {
   const { language } = useLanguage();
   const copy = advisoryCopy[language];
+  const pricing = getAdvisoryPricing(language);
   const [annual, setAnnual] = useState(false);
   const [contact, setContact] = useState<"subscription" | "session" | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const price = annual ? "¥129,999" : "¥12,999";
+  const price = annual ? pricing.yearly : pricing.monthly;
   const unit = annual ? copy.yearUnit : copy.monthUnit;
   const topicIcons = [Code2, Layers3, MessageSquare];
 
@@ -48,7 +50,7 @@ export function AdvisoryPlans() {
               <h3 id="casual-heading" className="text-xl font-semibold tracking-tight">Casual</h3>
               <div className="inline-flex rounded-md border border-white/10 bg-background p-0.5" role="group" aria-label={copy.billing}>
                 <button type="button" onClick={() => setAnnual(false)} aria-pressed={!annual} className={cn("rounded-sm px-2.5 py-1.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-ring", !annual ? "bg-white/15 text-foreground" : "text-muted-foreground")}>{copy.monthly}</button>
-                <button type="button" onClick={() => setAnnual(true)} aria-pressed={annual} className={cn("inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-ring", annual ? "bg-white/15 text-foreground" : "text-muted-foreground")}><span>{copy.yearly}</span><span className="tabular-nums">−16.7%</span></button>
+                <button type="button" onClick={() => setAnnual(true)} aria-pressed={annual} className={cn("inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-ring", annual ? "bg-white/15 text-foreground" : "text-muted-foreground")}><span>{copy.yearly}</span><span className="tabular-nums">−{pricing.annualDiscount}</span></button>
               </div>
             </div>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">{copy.planDescription}</p>
@@ -58,7 +60,7 @@ export function AdvisoryPlans() {
                   <strong className="text-4xl font-semibold leading-none tracking-tighter tabular-nums">{price}</strong>
                   <span className="text-sm text-muted-foreground">{unit}</span>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{copy.tax} · {annual ? copy.yearlyNote : copy.monthlyNote}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{copy.tax} · {annual ? copy.yearlyNote(pricing.yearly, pricing.monthlyEquivalent) : copy.monthlyNote}</p>
               </div>
               <ul className="space-y-3 border-t border-white/10 pt-5 text-base leading-[1.8] text-muted-foreground md:border-l md:border-t-0 md:pl-7 md:pt-0">
                 {[copy.time, copy.response, copy.textLanguages].map(item => <li key={item} className="flex items-start gap-2.5"><Check className="mt-1 size-4 shrink-0 text-foreground/75" aria-hidden="true" /><span>{item}</span></li>)}
@@ -84,7 +86,7 @@ export function AdvisoryPlans() {
               <p className="mt-3 text-sm leading-[1.8] text-muted-foreground">{copy.sessionNote}</p>
             </div>
             <div>
-              <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1"><strong className="text-4xl font-semibold leading-none tracking-tighter tabular-nums">¥10,000</strong><span className="text-sm text-muted-foreground">{copy.sessionUnit}</span></p>
+              <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1"><strong className="text-4xl font-semibold leading-none tracking-tighter tabular-nums">{pricing.session}</strong><span className="text-sm text-muted-foreground">{copy.sessionUnit}</span></p>
               <p className="mt-2 text-sm text-muted-foreground">{copy.tax}</p>
               <Button type="button" variant="outline" onClick={() => openContact("session")} className="mt-4 h-11 w-full justify-between border-white/20 bg-transparent px-4 text-base hover:bg-white/5 dark:bg-transparent dark:hover:bg-white/5">{copy.sessionAction}<ArrowUpRight className="size-4" aria-hidden="true" /></Button>
               <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground">{copy.contactNote}</p>
@@ -114,7 +116,7 @@ export function AdvisoryPlans() {
         <button type="button" onClick={() => dialogRef.current?.close()} aria-label={copy.contactClose} className="absolute right-4 top-4 rounded p-1 text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"><X className="size-4" /></button>
         <p className="pr-8 text-sm tracking-wide text-muted-foreground">{copy.contactBadge}</p>
         <h2 id="advisory-contact-title" className="mt-4 text-xl font-semibold tracking-tight">{contact === "session" ? copy.contactSessionTitle : copy.contactTitle}</h2>
-        <p className="mt-3 text-base font-medium">{contact === "session" ? `¥10,000 ${copy.sessionUnit} · ${copy.priceTax}` : `${price} ${unit} · ${copy.priceTax}`}</p>
+        <p className="mt-3 text-base font-medium">{contact === "session" ? `${pricing.session} ${copy.sessionUnit} · ${copy.priceTax}` : `${price} ${unit} · ${copy.priceTax}`}</p>
         <p id="advisory-contact-description" className="mt-4 text-sm leading-[1.8] text-muted-foreground">{contact === "session" ? copy.contactSession : copy.contactSubscription}</p>
         <div className="mt-5"><ContactMethods key={contact} /></div>
         <Button type="button" variant="ghost" onClick={() => dialogRef.current?.close()} className="mt-6 w-full text-muted-foreground">{copy.contactBack}</Button>

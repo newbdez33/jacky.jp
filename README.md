@@ -52,7 +52,7 @@ Production deploys run on **Cloudflare** from the connected Git repository (no m
 
 ## Customization
 
-Profile and plan content is in `lib/advisory-copy.ts`. Service rules and contact labels are in `lib/support-copy.ts`. The `/support/terms` page separates confirmed rules from draft terms and is excluded from indexing while those terms are under review. See [advisory service notes](docs/advisory-launch.md) for the manual payment and booking process.
+Profile and plan content is in `lib/advisory-copy.ts`. Fixed advisory prices are in `lib/advisory-pricing.ts`: USD for English, JPY for Japanese, and CNY for Chinese. Service rules and contact labels are in `lib/support-copy.ts`. The `/support/terms` page separates confirmed rules from draft terms and is excluded from indexing while those terms are under review. See [advisory service notes](docs/advisory-launch.md) for the manual payment and booking process.
 
 Styles are defined in `app/globals.css`.
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { advisoryCopy } from "@/lib/advisory-copy";
+import { getAdvisoryPricing } from "@/lib/advisory-pricing";
 import { useLanguage } from "@/lib/i18n-context";
 import { supportCopy } from "@/lib/support-copy";
 
@@ -9,6 +10,7 @@ export function SupportTerms() {
   const shared = supportCopy[language];
   const copy = shared.terms;
   const advisory = advisoryCopy[language];
+  const pricing = getAdvisoryPricing(language);
 
   return (
     <>
@@ -19,7 +21,7 @@ export function SupportTerms() {
       <section aria-labelledby="support-pricing-heading" className="mt-9">
         <h2 id="support-pricing-heading" className="text-xl font-semibold tracking-tight">{copy.pricing}</h2>
         <dl className="mt-4 divide-y divide-white/10 border-y border-white/10">
-          {[[copy.monthly, "¥12,999", advisory.monthUnit], [copy.yearly, "¥129,999", advisory.yearUnit], [copy.session, "¥10,000", advisory.sessionUnit]].map(([name, price, unit]) => (
+          {[[copy.monthly, pricing.monthly, advisory.monthUnit], [copy.yearly, pricing.yearly, advisory.yearUnit], [copy.session, pricing.session, advisory.sessionUnit]].map(([name, price, unit]) => (
             <div key={name} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 py-4">
               <dt className="text-base">{name}</dt>
               <dd className="flex flex-wrap items-baseline gap-x-2 gap-y-1"><strong className="text-xl font-semibold tracking-tight tabular-nums">{price}</strong><span className="text-sm text-muted-foreground">{unit}</span></dd>
