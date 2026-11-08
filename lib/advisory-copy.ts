@@ -98,7 +98,7 @@ export const advisoryCopy = {
     experienceTitle: "经验与技术背景。",
     experience: [
       { label: "20 年 · 持续动手", title: "开发、架构与 AI 实践", description: "从 Web、iOS、后端到云基础设施，跨层排查问题，判断技术选择是否适合业务。持续开发内部工具与用户产品，实践 AI 与机器学习。" },
-      { label: "安全意识", title: "Linux 社区与白帽实践", description: "对安全技术与风险保持高度敏感。曾任中国红客联盟早期论坛 Linux 版版主，参与过多项白帽安全行动。" },
+      { label: "网络安全", title: "Linux 社区与白帽实践", description: "对安全技术与风险保持高度敏感。曾任中国红客联盟早期论坛 Linux 版版主，参与过多项白帽安全行动。" },
       { label: "日本公共系", title: "真实项目的交付经验", description: "在十余人团队中协作，参与产品从构想到上线。咨询中会一起考虑业务目标、团队能力与交付约束。" },
       { label: "区块链", title: "量化交易工具与 EOS 链启动", description: "曾在日本前三的虚拟货币交易所之一开发量化交易工具，也作为第一批 BP（Block Producer）参与过 EOS 链的启动，对区块链技术有较深的理解。" },
     ],
