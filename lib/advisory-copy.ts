@@ -2,7 +2,7 @@ export const advisoryCopy = {
   en: {
     eyebrow: "JACKY / TECHNICAL ADVISORY",
     title: ["Build with AI.", "Think it through."],
-    description: "I'm Jacky, a full-stack developer and infrastructure architect in Tokyo with 20 years of experience. I have spent many years as a technical leader and now serve as a department head.",
+    description: "I'm Jacky, a full-stack developer and infrastructure architect in Tokyo with 20 years of experience. I have spent many years as a technical leader and now serve as a department head at the IT subsidiary of a listed company.",
     motivation: "Technology still excites me. I keep learning, writing code, and building products. I bring that practice, together with experience in technical leadership and project delivery, to the problems you are working through.",
     topics: ["Debugging & code review", "Architecture & Infra", "Technical growth"],
     experienceTitle: "Experience behind the advice.",
@@ -47,7 +47,7 @@ export const advisoryCopy = {
   ja: {
     eyebrow: "JACKY / TECHNICAL ADVISORY",
     title: ["AIで開発を加速。", "判断は、一緒に。"],
-    description: "東京を拠点とするフルスタック開発者・インフラアーキテクトのJackyです。20年の実務経験があり、長年テクニカルリーダーを務め、現在は企業で部長職に就いています。",
+    description: "東京を拠点とするフルスタック開発者・インフラアーキテクトのJackyです。20年の実務経験があり、長年テクニカルリーダーを務め、現在は上場企業のIT子会社で部長職に就いています。",
     motivation: "技術への情熱は、今も変わりません。学び、コードを書き、プロダクトを作り続けています。日々の実践と、技術を率いる立場での判断やプロジェクトの経験を、目の前の課題に活かします。",
     topics: ["デバッグ・コードレビュー", "設計・インフラ", "技術力・キャリア"],
     experienceTitle: "相談を支える実務経験。",
@@ -92,7 +92,7 @@ export const advisoryCopy = {
   zh: {
     eyebrow: "JACKY / 技术咨询",
     title: ["AI 加速开发。", "方向，一起看清。"],
-    description: "我是 Jacky，在东京工作的全栈开发者与 Infra 架构师，有 20 年实战经验。长期担任技术 Leader，目前在一家公司任职部长。",
+    description: "我是 Jacky，在东京工作的全栈开发者与 Infra 架构师，有 20 年实战经验。长期担任技术 Leader，目前在一家上市公司的 IT 子公司任职部长。",
     motivation: "对技术的热情，始终是我持续学习、写代码、做产品的动力。我希望把动手实践、技术领导与项目交付的经验，带到你眼前的问题里。",
     topics: ["Debug 与代码评审", "架构与基础设施", "技术成长与职业发展"],
     experienceTitle: "经验与技术背景。",
