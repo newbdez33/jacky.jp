@@ -53,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         <LanguageProvider>
           {children}

@@ -73,7 +73,7 @@ describe("GithubContributions", () => {
     const skeleton = screen.getByTestId("contributions-skeleton");
     expect(skeleton.closest("[aria-busy]")).toHaveAttribute("aria-busy", "true");
     expect(screen.queryByTestId("activity-calendar")).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Total \d+ contributions in lifetime$/)).not.toBeInTheDocument();
     expect(screen.getByText(/contributions in lifetime/)).toContainElement(
       document.querySelector(".gh-skeleton-pill")
     );
@@ -100,11 +100,7 @@ describe("GithubContributions", () => {
 
     const calendar = await screen.findByTestId("activity-calendar");
     expect(calendar).toHaveAttribute("data-loading", "false");
-    await waitFor(() => {
-      expect(screen.getByRole("heading")).toHaveTextContent(
-        /Total 150 contributions in lifetime/
-      );
-    });
+    expect(await screen.findByText("Total 150 contributions in lifetime")).toBeVisible();
     expect(calendar.closest("[aria-busy]")).toHaveAttribute("aria-busy", "false");
     await waitFor(() =>
       expect(screen.queryByTestId("contributions-skeleton")).not.toBeInTheDocument()

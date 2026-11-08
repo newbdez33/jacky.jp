@@ -19,7 +19,7 @@ export function TokenUsageBadge() {
     >
       {!imageLoaded && (
         <div className="flex h-full flex-col justify-center rounded-xl bg-[#171717] px-5">
-          <span className="text-xs text-muted-foreground">{t.tokenUsage.title}</span>
+          <span className="text-sm text-muted-foreground">{t.tokenUsage.title}</span>
           <span className="text-sm text-foreground">
             {t.tokenUsage.viewUsage}<span aria-hidden> ↗</span>
           </span>

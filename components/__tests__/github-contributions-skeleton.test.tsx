@@ -19,13 +19,13 @@ describe("ContributionsSkeleton", () => {
   it("renders a 53 by 7 grid at the calendar's exact geometry", () => {
     const { container } = render(<ContributionsSkeleton wave={null} seed={1} />);
     const svg = container.querySelector("svg")!;
-    // 53 weeks * (11px block + 3px gap) - 3px; 20px label row + 7 * 14px - 3px
+    // 53 weeks * (11px block + 3px gap) - 3px; 22px label row + 7 * 14px - 3px
     expect(svg).toHaveAttribute("width", "739");
-    expect(svg).toHaveAttribute("height", "115");
+    expect(svg).toHaveAttribute("height", "117");
     expect(container.querySelectorAll("[data-cell]")).toHaveLength(53 * 7);
     const first = container.querySelector('[data-cell="0-0"]')!;
     expect(first).toHaveAttribute("x", "0");
-    expect(first).toHaveAttribute("y", "20");
+    expect(first).toHaveAttribute("y", "22");
     expect(first).toHaveAttribute("width", "11");
     expect(first).toHaveAttribute("rx", "2");
     expect(first).toHaveAttribute("fill", CALENDAR_THEME.dark[0]);
