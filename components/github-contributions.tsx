@@ -7,6 +7,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import { AwsBadge } from "@/components/aws-badge";
 import { TokenUsageBadge } from "@/components/token-usage-badge";
 import { useLanguage } from "@/lib/i18n-context";
+import { advisoryCopy } from "@/lib/advisory-copy";
 import { cn } from "@/lib/utils";
 import {
   CALENDAR,
@@ -68,7 +69,8 @@ function weekDelays(contributions: Activity[]): Map<string, number> {
 }
 
 export function GithubContributions() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const copy = advisoryCopy[language];
   const [fetchState, setFetchState] = useState<FetchState>("loading");
   const [totalContributions, setTotalContributions] = useState<number | null>(null);
   const [contributions, setContributions] = useState<Activity[]>([]);
@@ -137,12 +139,16 @@ export function GithubContributions() {
       aria-label={t.github.sectionAriaLabel}
     >
       <div className="w-full max-w-3xl mx-auto space-y-0">
+        <header className="mb-5">
+          <h2 className="text-xl font-semibold tracking-tight">{copy.evidenceTitle}</h2>
+          <p className="mt-3 text-sm leading-[1.8] text-muted-foreground">{copy.evidenceDescription}</p>
+        </header>
         <div
           className="flex justify-start overflow-hidden"
           aria-busy={fetchState === "loading"}
         >
           {fetchState === "error" ? (
-            <p className="text-xs text-muted-foreground py-2" role="status">
+            <p className="text-sm text-muted-foreground py-2" role="status">
               {t.github.loadError}
             </p>
           ) : (
@@ -188,11 +194,11 @@ export function GithubContributions() {
           )}
         </div>
         {fetchState === "error" ? null : totalContributions !== null ? (
-          <h2 className="text-xs font-normal text-muted-foreground animate-in fade-in duration-300">
+          <p className="text-sm text-muted-foreground animate-in fade-in duration-300">
             {t.github.totalContributionsPrefix}{totalContributions}{t.github.totalContributionsSuffix}
-          </h2>
+          </p>
         ) : fetchState === "loading" ? (
-          <p className="text-xs text-muted-foreground" aria-hidden>
+          <p className="text-sm text-muted-foreground" aria-hidden>
             {t.github.totalContributionsPrefix}
             <NumberPill wave={motion?.wave ?? null} />
             {t.github.totalContributionsSuffix}

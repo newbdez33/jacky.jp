@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ContactMethods } from "@/components/contact-methods";
 import { useLanguage } from "@/lib/i18n-context";
+import { supportCopy } from "@/lib/support-copy";
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -24,8 +26,12 @@ export function Footer() {
   return (
     <footer className="py-6 md:py-8 text-sm text-muted-foreground animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
       <div className="max-w-3xl mx-auto px-4 md:px-0 space-y-6">
+        <div className="flex flex-wrap gap-x-6 gap-y-3">
+          <Link href={`/support/terms?lang=${language}`} className="rounded-sm underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring">{supportCopy[language].termsLink}</Link>
+        </div>
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">{t.footer.reachMe}</p>
+          <ContactMethods />
           <div className="flex gap-2">
             <Button size="icon-sm" asChild className="rounded-sm bg-zinc-900 hover:bg-zinc-800 text-white border-zinc-800">
               <Link href="https://x.com/z33" target="_blank" rel="noopener noreferrer">
@@ -48,7 +54,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="flex justify-between items-end">
+        <div className="flex flex-wrap justify-between items-end gap-4">
           <div className="space-y-1">
             <p>{t.footer.madeWith}</p>
             <p>
@@ -73,6 +79,15 @@ export function Footer() {
               className={`transition-colors ${language === "ja" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
             >
               日本語
+            </button>
+            <span aria-hidden>/</span>
+            <button
+              type="button"
+              onClick={() => setLanguage("zh")}
+              aria-pressed={language === "zh"}
+              className={`transition-colors ${language === "zh" ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            >
+              中文
             </button>
           </div>
         </div>

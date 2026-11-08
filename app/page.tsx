@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero";
+import { AdvisoryPlans } from "@/components/advisory-plans";
 import { GithubContributions } from "@/components/github-contributions";
 import { Footer } from "@/components/footer";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <div className="container mx-auto">
         <Hero />
         <GithubContributions />
+        <AdvisoryPlans />
         <Footer />
       </div>
     </main>

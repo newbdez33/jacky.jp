@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Language = "en" | "ja";
+type Language = "en" | "ja" | "zh";
 
 type Translations = {
   hero: {
@@ -107,7 +107,29 @@ const translations: Record<Language, Translations> = {
       sectionAriaLabel: "GitHub のコントリビューション",
     },
   },
+  zh: {
+    hero: {
+      greeting: "你好，我是 Jacky",
+      description: {
+        part1: "我是一名", role: "全栈开发者", part2: "，在", location: "东京",
+        part3: "工作，专注于", ai: "机器学习与 AI",
+        comma1: "。我开发内部工具和面向用户的应用，也有", blockchain: "区块链",
+        comma2: "与", tradingBot: "交易机器人",
+        part4: "的开发经验。在公共系项目中，我与十余人的团队协作，帮助产品从构想到上线。",
+      },
+    },
+    footer: { reachMe: "联系我", madeWith: "Made with ❤️", rights: "Jacky. 保留所有权利。" },
+    tokenUsage: { title: "AI Token 用量", viewUsage: "查看用量" },
+    github: {
+      totalContributionsPrefix: "累计 ", totalContributionsSuffix: " 次贡献",
+      loadError: "无法加载 GitHub 贡献数据，请稍后重试。", sectionAriaLabel: "GitHub 贡献记录",
+    },
+  },
 };
+
+function isLanguage(value: string | null): value is Language {
+  return value === "en" || value === "ja" || value === "zh";
+}
 
 type LanguageContextType = {
   language: Language;
@@ -122,23 +144,30 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     queueMicrotask(() => {
-      const savedLang = localStorage.getItem("language") as Language;
-      if (savedLang && (savedLang === "en" || savedLang === "ja")) {
-        setLanguage(savedLang);
+      const requested = new URLSearchParams(window.location.search).get("lang");
+      let saved: string | null = null;
+      try { saved = localStorage.getItem("language"); } catch { /* Use the browser language if storage is blocked. */ }
+      if (isLanguage(requested) || isLanguage(saved)) {
+        setLanguage(isLanguage(requested) ? requested : saved as Language);
         return;
       }
       const browserLang = navigator.language.toLowerCase();
-      setLanguage(browserLang.startsWith("ja") ? "ja" : "en");
+      setLanguage(browserLang.startsWith("zh") ? "zh" : browserLang.startsWith("ja") ? "ja" : "en");
     });
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem("language", lang);
+    try { localStorage.setItem("language", lang); } catch { /* Keep the selected language for this page. */ }
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("lang")) {
+      url.searchParams.set("lang", lang);
+      window.history.replaceState(window.history.state, "", url);
+    }
   };
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    document.documentElement.lang = language === "zh" ? "zh-CN" : language;
   }, [language]);
 
   const value = {

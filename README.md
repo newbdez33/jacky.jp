@@ -1,10 +1,10 @@
-# Jacky's Portfolio
+# Jacky's Portfolio and Technical Advisory
 
-A minimal, dark-themed portfolio website built with Next.js, Tailwind CSS, and Shadcn UI.
+A minimal, dark-themed portfolio and technical advisory website built with Next.js, Tailwind CSS, and Shadcn UI.
 
 ## Overview
 
-This is a personal portfolio website for Jacky, a Full-Stack Developer specializing in blockchain and quantitative trading. The design focuses on simplicity and clean aesthetics, featuring a dark mode interface.
+This website presents Jacky's development and infrastructure experience, technical advisory plans, and contact options in English, Japanese, and Chinese. Visitors can discuss their needs through WeChat or Telegram, then agree on a payment method. The site does not process payments or bookings.
 
 ## Tech Stack
 
@@ -23,7 +23,8 @@ This is a personal portfolio website for Jacky, a Full-Stack Developer specializ
 - 📊 **GitHub Contributions**: Interactive GitHub contribution graph with lifetime stats.
 - ⚡ **Responsive Design**: Optimized for mobile and desktop.
 - 🎨 **Minimalist UI**: Clean typography and spacing.
-- 👋 **Interactive Elements**: Subtle animations (e.g., waving hand).
+- 💬 **Technical Advisory**: Casual subscriptions, separate consultations, and direct contact options.
+- 🌐 **Three Languages**: English, Japanese, and Chinese, with a shared font and language selection through `?lang=en`, `?lang=ja`, or `?lang=zh`.
 
 ## Getting Started
 
@@ -51,7 +52,8 @@ Production deploys run on **Cloudflare** from the connected Git repository (no m
 
 ## Customization
 
-You can modify the content in `components/hero.tsx` to update the personal information.
+Profile and plan content is in `lib/advisory-copy.ts`. Service rules and contact labels are in `lib/support-copy.ts`. The `/support/terms` page separates confirmed rules from draft terms and is excluded from indexing while those terms are under review. See [advisory service notes](docs/advisory-launch.md) for the manual payment and booking process.
+
 Styles are defined in `app/globals.css`.
 
 ## License

@@ -5,7 +5,7 @@ export const WAVES: readonly Wave[] = ["diag", "horiz", "sine"];
 
 // Geometry shared with <ActivityCalendar>. LABEL_MARGIN mirrors the library's
 // internal constant so the skeleton lines up with the real calendar pixel for pixel.
-export const CALENDAR = { blockSize: 11, blockMargin: 3, fontSize: 12, weeks: 53, days: 7 } as const;
+export const CALENDAR = { blockSize: 11, blockMargin: 3, fontSize: 14, weeks: 53, days: 7 } as const;
 const LABEL_MARGIN = 8;
 const STEP = CALENDAR.blockSize + CALENDAR.blockMargin;
 const LABEL_HEIGHT = CALENDAR.fontSize + LABEL_MARGIN;
