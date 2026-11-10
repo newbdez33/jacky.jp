@@ -24,7 +24,7 @@ const CELL_STROKE = "rgba(255, 255, 255, 0.04)"; // same stroke the library draw
 const PERIOD = 2.4; // seconds per wave
 const SPREAD = 0.85; // fraction of the period the wave takes to cross the grid
 const WAVELENGTH = 18; // sine wavelength in columns
-const DENSITY = 0.6; // share of cells that light up green
+const DENSITY = 0.6; // share of cells that light up
 const JITTER = 0.08; // per-cell random offset, as a fraction of the period
 
 // Month-label placeholders, roughly every 4.3 weeks like the real labels.
@@ -38,17 +38,17 @@ function lcg(seed: number) {
   };
 }
 
-type GreenCell = { col: number; row: number; fill: string; jitter: number };
+type ColoredCell = { col: number; row: number; fill: string; jitter: number };
 
-function greenCells(seed: number): GreenCell[] {
+function coloredCells(seed: number, colors: string[]): ColoredCell[] {
   const rand = lcg(seed);
-  const cells: GreenCell[] = [];
+  const cells: ColoredCell[] = [];
   for (let col = 0; col < CALENDAR.weeks; col++) {
     for (let row = 0; row < CALENDAR.days; row++) {
       if (rand() >= DENSITY) continue;
       const x = rand();
       const level = x < 0.45 ? 1 : x < 0.75 ? 2 : x < 0.92 ? 3 : 4;
-      cells.push({ col, row, fill: CALENDAR_THEME.dark[level], jitter: (rand() - 0.5) * JITTER * PERIOD });
+      cells.push({ col, row, fill: colors[level], jitter: (rand() - 0.5) * JITTER * PERIOD });
     }
   }
   return cells;
@@ -120,8 +120,16 @@ const WAVE_CSS = [
 const delayStyle = (wave: Wave | null, col: number, row: number, extra = 0): CSSProperties | undefined =>
   wave ? { animationDelay: `${(delay(wave, col, row) + extra).toFixed(3)}s` } : undefined;
 
-export function ContributionsSkeleton({ wave, seed }: { wave: Wave | null; seed: number }) {
-  const greens = useMemo(() => (wave ? greenCells(seed) : []), [wave, seed]);
+export function ContributionsSkeleton({
+  wave,
+  seed,
+  colors = CALENDAR_THEME.dark,
+}: {
+  wave: Wave | null;
+  seed: number;
+  colors?: string[];
+}) {
+  const highlights = useMemo(() => (wave ? coloredCells(seed, colors) : []), [wave, seed, colors]);
 
   return (
     <div
@@ -172,7 +180,7 @@ export function ContributionsSkeleton({ wave, seed }: { wave: Wave | null; seed:
             />
           ))
         )}
-        {greens.map(({ col, row, fill, jitter }) => (
+        {highlights.map(({ col, row, fill, jitter }) => (
           <rect
             key={`green-${col}-${row}`}
             className="gh-skeleton-green"

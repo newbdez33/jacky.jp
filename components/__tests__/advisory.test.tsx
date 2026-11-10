@@ -59,10 +59,10 @@ describe("Technical advisory page", () => {
     expect(screen.getByText("¥129,999")).toBeVisible();
     expect(screen.getByText("チャット：中国語・日本語・英語")).toBeVisible();
     expect(screen.getByText("面談：中国語・英語")).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "中文", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "中文" }));
     expect(screen.getByText("CN¥5,500")).toBeVisible();
     expect(screen.getByText("含税 · 每年一次支付 CN¥5,500，折合约 CN¥458 / 月。")).toBeVisible();
-    fireEvent.click(screen.getByRole("button", { name: "EN", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "EN" }));
     expect(screen.getByText("US$850")).toBeVisible();
   });
 
@@ -100,7 +100,7 @@ describe("Technical advisory page", () => {
     fireEvent.click(screen.getByRole("button", { name: "返回服务方案" }));
     expect(document.documentElement.lang).toBe("zh-CN");
     expect(screen.getByAltText("Jacky")).toHaveAttribute("src", expect.stringContaining("jacky-avatar.webp"));
-    fireEvent.click(screen.getByRole("button", { name: "EN", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "EN" }));
     expect(screen.getByText("Build with AI.")).toBeVisible();
     expect(screen.getByText("US$85")).toBeVisible();
     expect(window.location.search).toBe("?lang=en");

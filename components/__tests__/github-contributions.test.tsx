@@ -7,6 +7,10 @@ import { LanguageProvider } from "@/lib/i18n-context";
 
 type MockActivity = { date: string; count: number; level: number };
 
+jest.mock("@/components/token-usage-activity", () => ({
+  TokenUsageActivity: () => <div data-testid="token-usage-activity" />,
+}));
+
 jest.mock("react-activity-calendar", () => ({
   ActivityCalendar: function MockActivityCalendar(props: {
     loading?: boolean;

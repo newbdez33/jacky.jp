@@ -29,6 +29,10 @@ type Translations = {
   tokenUsage: {
     title: string;
     viewUsage: string;
+    loadError: string;
+    totalPrefix: string;
+    totalSuffix: string;
+    dayUsage: string;
   };
   github: {
     totalContributionsPrefix: string;
@@ -65,6 +69,10 @@ const translations: Record<Language, Translations> = {
     tokenUsage: {
       title: "AI Token Usage",
       viewUsage: "View usage",
+      loadError: "Could not load AI usage data. Try again later.",
+      totalPrefix: "Total ",
+      totalSuffix: " tokens in the last 365 days",
+      dayUsage: "{tokens} tokens on {date}",
     },
     github: {
       totalContributionsPrefix: "Total ",
@@ -99,6 +107,10 @@ const translations: Record<Language, Translations> = {
     tokenUsage: {
       title: "AIトークン使用量",
       viewUsage: "使用量を見る",
+      loadError: "AI使用量を読み込めませんでした。しばらくしてから再度お試しください。",
+      totalPrefix: "過去365日間の合計: ",
+      totalSuffix: " トークン",
+      dayUsage: "{date}: {tokens} トークン",
     },
     github: {
       totalContributionsPrefix: "生涯のコントリビューション総数: ",
@@ -119,7 +131,12 @@ const translations: Record<Language, Translations> = {
       },
     },
     footer: { reachMe: "联系我", madeWith: "Made with ❤️", rights: "Jacky. 保留所有权利。" },
-    tokenUsage: { title: "AI Token 用量", viewUsage: "查看用量" },
+    tokenUsage: {
+      title: "AI Token 用量", viewUsage: "查看用量",
+      loadError: "无法加载 AI 用量，请稍后重试。",
+      totalPrefix: "过去 365 天累计 ", totalSuffix: " Token",
+      dayUsage: "{date}：{tokens} Token",
+    },
     github: {
       totalContributionsPrefix: "累计 ", totalContributionsSuffix: " 次贡献",
       loadError: "无法加载 GitHub 贡献数据，请稍后重试。", sectionAriaLabel: "GitHub 贡献记录",

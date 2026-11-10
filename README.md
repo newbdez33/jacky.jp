@@ -21,6 +21,7 @@ This website presents Jacky's development and infrastructure experience, technic
 
 - 🌓 **Dark Mode**: Deep dark theme by default.
 - 📊 **GitHub Contributions**: Interactive GitHub contribution graph with lifetime stats.
+- **AI Token Activity**: A daily token calendar with the same layout, animation, and tooltips as the GitHub graph.
 - ⚡ **Responsive Design**: Optimized for mobile and desktop.
 - 🎨 **Minimalist UI**: Clean typography and spacing.
 - 💬 **Technical Advisory**: Casual subscriptions, separate consultations, and direct contact options.
@@ -43,6 +44,22 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Production deploys run on **Cloudflare** from the connected Git repository (no manual upload steps in this README).
+
+### AI activity data
+
+The AI calendar fetches the public Token Beats endpoint
+`https://token-beats-api.jacky-1a4.workers.dev/v1/public/users/jacky@gcu.co.jp/activity`
+without credentials. Deploy that API before this frontend. It must allow
+`https://jacky.jp` through CORS and return 365 ascending `{ date, tokens }` entries,
+their `{ start, end }` range, and `totalTokens` for the same range. The date range
+ends on today in Tokyo; daily totals retain the collector's local date buckets.
+
+GitHub and AI activity use `components/activity-heatmap.tsx`. AI color levels use
+quartiles of nonzero days, so one large day does not flatten the rest. A failed or
+timed-out request shows an error and keeps the usage-dashboard link available.
+For local previews, set `NEXT_PUBLIC_TOKEN_ACTIVITY_URL` to a fixture or development
+endpoint that permits the preview origin. Do not include a private API token in
+this build-time URL.
 
 ## Project Structure
 
