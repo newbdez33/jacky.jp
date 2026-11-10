@@ -20,6 +20,7 @@ type Props = {
   tooltipId: string;
   tooltipText: (activity: Activity) => string;
   summary: { value: string | null; prefix: string; suffix: string };
+  theme?: typeof CALENDAR_THEME;
 };
 
 // Weeks start on Sunday, matching the calendar's default grouping.
@@ -43,6 +44,7 @@ export function ActivityHeatmap({
   tooltipId,
   tooltipText,
   summary,
+  theme = CALENDAR_THEME,
 }: Props) {
   const [motion, setMotion] = useState<{ wave: Wave; seed: number } | null>(
     null,
@@ -89,6 +91,7 @@ export function ActivityHeatmap({
                 <ContributionsSkeleton
                   wave={motion?.wave ?? null}
                   seed={motion?.seed ?? 0}
+                  colors={theme.dark}
                 />
               </div>
             )}
@@ -100,7 +103,7 @@ export function ActivityHeatmap({
                   blockSize={CALENDAR.blockSize}
                   blockMargin={CALENDAR.blockMargin}
                   fontSize={CALENDAR.fontSize}
-                  theme={CALENDAR_THEME}
+                  theme={theme}
                   showColorLegend={false}
                   showTotalCount={false}
                   renderBlock={(block, activity) =>

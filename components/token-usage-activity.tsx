@@ -14,6 +14,12 @@ const ACTIVITY_URL =
   process.env.NEXT_PUBLIC_TOKEN_ACTIVITY_URL ??
   "https://token-beats-api.jacky-1a4.workers.dev/v1/public/users/jacky@gcu.co.jp/activity";
 
+// Match the heatmap palette in the Token Beats desktop app.
+const ACTIVITY_THEME = {
+  light: ["#eff5ff", "#ddecff", "#bbd9ff", "#1e7fff", "#14327d"],
+  dark: ["#1d1d22", "#23324f", "#2d4c8c", "#4d95ff", "#a8c8ff"],
+};
+
 export function TokenUsageActivity() {
   const { language, t } = useLanguage();
   const [activity, setActivity] = useState<TokenActivity | null>(null);
@@ -68,6 +74,7 @@ export function TokenUsageActivity() {
       <ActivityHeatmap
         data={days}
         error={failed ? t.tokenUsage.loadError : null}
+        theme={ACTIVITY_THEME}
         tooltipId="token-usage-tooltip"
         tooltipText={({ date, count }) =>
           t.tokenUsage.dayUsage
